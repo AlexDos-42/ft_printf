@@ -2,15 +2,21 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "ft_printf.h"
 
 void   ft_flags(char **arg, t_parsing *parsing)
 {
 	if (*arg)
 	{ 
-		if (arg == '-' || arg == '+' || arg == '0' || arg == " " || arg == "#")
-			parsing->flags = arg++;
-		else
-			parsing->flags = '\0';	
+		while (arg == '-' || arg == '+' || arg == '0' || arg == " " || arg == "#")
+		{
+		if (arg == '-')
+			parsing->flags- = 1;
+		if (arg == '0' && parsing->flags- != -1)
+			parsing->flags0 = 1;
+		if (parsing->flags- == 1)
+			parsing->flags0 = 0;
+		}
 	}
 }
 
@@ -21,14 +27,13 @@ void	ft_width(char **arg, t_parsing *parsing)
 	if (*arg && ft_isdigit(*arg))
 	{
 		parsing->width = ft_atoi(*arg);
-		//incrémenter arg en f° atoi
+		while (ft_isdigit(*arg))
+			*arg++;
 	}
 	else if (*arg && *arg == "*")	
 	{
 		*arg++;
 	}	
-	else
-		parsing->width = '\0';	
 
 }
 
@@ -40,13 +45,12 @@ void	ft_precision(char **arg, t_parsing *parsing)
 		if (*arg && ft_isdigit(*arg))
 		{
 			parsing->precision = ft_atoi(*arg);
-			//incrémenter arg en f° atoi
-			else if (*arg && *arg == "*")	
-			{
-				*arg;
-			}
-			else	
-				parsing->precision = '\0';	
+			while (ft_isdigit(*arg))
+				*arg++;
+		}
+		else if (*arg && *arg == "*")	
+		{
+				*arg++;
 		}
 	}
 }
@@ -71,42 +75,30 @@ void	ft_lenght(char **arg, t_parsing *parsing)
 			parsing->lenght = 'hh';
 			arg++;
 		}
-		else if (*arg == 'j' || *arg == 't' || *arg == 'z')
-			parsing->lenght = *arg++;
-		else
-			parsing->lenght = '\0';
-	}
+	else if (*arg == 'j' || *arg == 't' || *arg == 'z')
+		parsing->lenght = *arg++;
+	
 }
 
-void ft_type(char **arg, t_parsing *parsing)
+void ft_type(char **arg, va_list va, t_parsing *parsing)
 {
-	if (*arg && *arg == c)
-		ft_typec
-	else if (*arg && *arg == s)
-		ft_types
-	else if (*arg && *arg == p)
-		ft_typep
-	else if (*arg && *arg == d)
-		ft_typed
-	else if (*arg && *arg == i)
-		ft_typei
-	else if (*arg && *arg == u)
-		ft_typeu
-	else if (*arg && (*arg == x || *arg == X))
-		ft_typexX
-	else if (*arg && *arg == f)
-		ft_typef
-	else if (*arg && *arg == g)
-		ft_typeg
-	else if (*arg && *arg == e)
-		ft_typee
-	else if (*arg && *arg == n)
-		ft_typen
+	if (*arg == 'c')
+		parsing->aff = ft_strdup_c(va_arg(*va, int));
+	else if (*arg == 's')
+		parsing->aff = ft_strdup(va_arg(*va, char*));
+	else if (*arg == 'd' || *arg == 'i')
+		parsing->aff = ft_itoa(va_arg(*va, int));
+	else if (*arg == 'u')
+	else if (*arg == 'x')
+	else if (*arg == 'X')
+	else if (*arg == '%')
+	else if (*arg == 'p')
 }
 
 void		ft_init_parsing(t_parsing *parsing)
 {
-	parsing->format = NULL;
+	parsing->flags- = NULL;
+	parsing->flags0 = NULL;
 	parsing->width = NULL;
 	parsing->precision = NULL;
 	parsing->lenght = NULL;
@@ -122,7 +114,7 @@ void		ft_parsing(char *arg, va_list va)
 	ft_width(&arg, &parsing);
 	ft_precision(&arg, &parsing);
 	ft_lenght(&arg, &parsing);
-	parsing->aff = ft_type(&arg, &parsing);
+	ft_type(&arg, &parsing);
 }
 
 char 	*ft_format(char **arg, va_list va, t_parsing *parsing)
@@ -157,7 +149,7 @@ int	ft_printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-	if (!(parsing = (t_parsing*)malloc(sizeof(t_parsingi))))
+	if (!(parsing = (t_parsing*)malloc(sizeof(t_parsing))))
 		return (0);
 	va_start(va, format);
 	arg = (char *)format;
