@@ -10,10 +10,15 @@ void ft_type(char **arg, va_list va, t_parsing *parsing)
 	else if (*arg == 'd' || *arg == 'i')
 		parsing->aff = ft_itoa(va_arg(*va, int));
 	else if (*arg == 'u')
+		parsing->aff =
 	else if (*arg == 'x')
+		parsing->aff =
 	else if (*arg == 'X')
+		parsing->aff =
 	else if (*arg == '%')
+		parsing->aff =
 	else if (*arg == 'p')
+		parsing->aff =
 }
 
 void		ft_init_parsing(t_parsing *parsing)
