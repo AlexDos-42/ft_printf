@@ -29,8 +29,6 @@ void		ft_init_parsing(t_parsing *parsing)
 
 void		ft_parsing(char *arg, va_list va)
 {
-	int i;
-
 	ft_format(&arg, &parsing);
 	ft_width(&arg, &parsing);
 	ft_precision(&arg, &parsing);
