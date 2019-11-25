@@ -18,12 +18,11 @@ void ft_type(char **arg, va_list va, t_parsing *parsing)
 
 void		ft_init_parsing(t_parsing *parsing)
 {
-	parsing->flags- = NULL;
-	parsing->flags0 = NULL;
-	parsing->width = NULL;
-	parsing->precision = NULL;
-	parsing->lenght = NULL;
-	parsing->type = NULL;
+	parsing->flags- = 0;
+	parsing->flags0 = 0;
+	parsing->width = 0;
+	parsing->precision = 0;
+	parsing->lenght = 0;
 	parsing->aff = NULL;
 }
 
@@ -39,7 +38,8 @@ void		ft_parsing(char *arg, va_list va)
 char 	*ft_format(char **arg, va_list va, t_parsing *parsing)
 {
 	char *tmp;
-
+	char *put;
+	
 	while (*arg)
 	{
 		ft_init_parsing(parsing);
@@ -47,10 +47,10 @@ char 	*ft_format(char **arg, va_list va, t_parsing *parsing)
 		{
 			arg++ += ft_parsing(&arg, va);
 			if (parsing->aff)
-				tmp = ft_strjoin(new_s, parsing->aff);
+				tmp = ft_strjoin(put, parsing->aff);
 		}
 		else 
-		//	tmp = 
+			tmp = ft_strjoin_c(put, parsing->aff);
 	free(parsing->aff);
 	free(put);
 	put = tmp;
