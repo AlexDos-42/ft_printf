@@ -4,7 +4,7 @@
 void ft_type(char **arg, va_list va, t_parsing *parsing)
 {
 	if (*arg == 'c')
-		parsing->aff = ft_strdup_c(va_arg(*va, int));
+		parsing->aff = ft_cdup(va_arg(*va, int));
 	else if (*arg == 's')
 		parsing->aff = ft_strdup(va_arg(*va, char*));
 	else if (*arg == 'd' || *arg == 'i')
@@ -16,7 +16,7 @@ void ft_type(char **arg, va_list va, t_parsing *parsing)
 	else if (*arg == 'X')
 		parsing->aff =
 	else if (*arg == '%')
-		parsing->aff = ft_strdup_c('%');
+		parsing->aff = ft_cdup('%');
 	else if (*arg == 'p')
 		parsing->aff =
 }
