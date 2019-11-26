@@ -1,6 +1,6 @@
 # include "ft_printf.h"
 
-char	*ft_strdup_char(char c)
+char	*ft_strdup_c(char c)
 {
 	char	*str;
 	int		i;
