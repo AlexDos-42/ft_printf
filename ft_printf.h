@@ -11,5 +11,6 @@ typedef struct		s_parsing
 }			t_parsing;
 
 void   ft_flags(char **arg, t_parsing *parsing);
+void   ft_width(char **arg, t_parsing *parsing);
 
 #endef
