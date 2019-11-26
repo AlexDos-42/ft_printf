@@ -1,5 +1,20 @@
 # include "ft_printf.h"
 
+char	*ft_strdup_char(char c)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	if (!c)
+		return (NULL);
+	if (!(str = malloc(c + 1 * sizeof(char))))
+		return (NULL);
+	str[i++] = (unsigned char)c;
+	str[i] = '\0';
+	return (str);
+}
+
 char	*ft_strjoin_c(char const *s1, char c)
 {
 	int		i;
