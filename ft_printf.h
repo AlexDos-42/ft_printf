@@ -1,3 +1,6 @@
+#ifndef FT_PRINTF_H
+#define FT_PRINTF_H
+
 typedef struct		s_parsing
 {
 	int		flags;
@@ -6,3 +9,7 @@ typedef struct		s_parsing
 	int		type;
 	int		signe;
 }			t_parsing;
+
+void   ft_flags(char **arg, t_parsing *parsing);
+
+#endef
