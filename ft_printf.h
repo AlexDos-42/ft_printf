@@ -13,5 +13,6 @@ typedef struct		s_parsing
 void   ft_flags(char **arg, t_parsing *parsing);
 void   ft_width(char **arg, t_parsing *parsing);
 void	ft_precision(char **arg, t_parsing *parsing);
+void	ft_lenght(char **arg, t_parsing *parsing);
 
 #endif
