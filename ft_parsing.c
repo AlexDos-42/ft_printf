@@ -51,7 +51,8 @@ void	ft_precision(char **arg, t_parsing *parsing)
 		}
 		else if (*arg && *arg == "*")	
 		{
-				*arg++;
+			parsing->precision = va_arg(*va, unsigned int)
+			*arg++;
 		}
 	}
 }
