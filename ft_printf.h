@@ -6,8 +6,9 @@ typedef struct		s_parsing
 	int		flags;
 	int		precision;
 	int		width;
-	int		type;
-	int		signe;
+	char		*aff;
+	int		lenght;
+	int		flags0;
 }			t_parsing;
 
 void   ft_flags(char **arg, t_parsing *parsing);
