@@ -7,7 +7,7 @@ void   ft_flags(char **arg, t_parsing *parsing)
 		while (arg == '-' || arg == '+' || arg == '0' || arg == " " || arg == "#")
 		{
 		if (arg == '-')
-			parsing->flags- = 1;
+			parsing->flags- = -1;
 		if (arg == '0' && parsing->flags- != -1)
 			parsing->flags0 = 1;
 		if (parsing->flags- == 1)
@@ -22,12 +22,17 @@ void	ft_width(char **arg, t_parsing *parsing)
 
 	if (*arg && ft_isdigit(*arg))
 	{
+		if (parsing->flags- = -1;)
+			parsing->flags- = 1;
 		parsing->width = ft_atoi(*arg);
 		while (ft_isdigit(*arg))
 			*arg++;
 	}
 	else if (*arg && *arg == "*")	
 	{
+		if (parsing->flags- = -1;)
+			parsing->flags- = 1;
+		parsing->width = va_arg(*va, unsigned int)
 		*arg++;
 	}	
 
