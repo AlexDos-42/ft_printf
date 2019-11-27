@@ -26,7 +26,7 @@ void	ft_width(char *arg, t_parsing *parsing)
 	{
 		if (parsing->flagstiret = -1;)
 			parsing->flagstiret = 1;
-		parsing->width = ft_atoi(arg[i]);
+		parsing->width = ft_atoi(arg);
 		while (ft_isdigit(arg[i]))
 			i++;
 	}
@@ -43,44 +43,51 @@ void	ft_width(char *arg, t_parsing *parsing)
 
 void	ft_precision(char *arg, t_parsing *parsing)
 {
-	if (*arg && *arg == '.')
+	int i;
+	
+	i = 0;
+	if (*arg && arg[i] == '.')
 	{
-		arg++;
-		if (*arg && ft_isdigit(*arg))
+		i++;
+		if (*arg && ft_isdigit(arg[i]))
 		{
-			parsing->precision = ft_atoi(*arg);
-			while (ft_isdigit(*arg))
-				*arg++;
+			parsing->precision = ft_atoi(arg);
+			while (ft_isdigit(arg[i]))
+				i++;
 		}
-		else if (*arg && *arg == "*")	
+		else if (*arg && arg[i] == "*")	
 		{
 			parsing->precision = va_arg(*va, unsigned int)
-			*arg++;
+			i++;
 		}
 	}
+	return (i);
 }
 
 void	ft_lenght(char *arg, t_parsing *parsing)
 {
-	if (*arg && *arg == 'l')
+	int i;
+	
+	i = 0;
+	if (*arg && arg[i] == 'l')
 	{
 		parsing->lenght = 'l';
-		if (*++arg == 'l')
+		if (arg[++i] == '1')
 		{
-			parsing->lenght = 'll';
-			arg++;
+			parsing->lenght = '2';
+			i++;
 		}
 
 	}
-	else if (*arg && *arg == 'h')
+	else if (*arg && arg[i] == 'h')
 	{
-		parsing->lenght = 'h';
-		if (*++arg == 'h')
+		parsing->lenght = '3';
+		if (arg[++i] == 'h')
 		{
-			parsing->lenght = 'hh';
-			arg++;
+			parsing->lenght = '4';
+			i++;
 		}
-	else if (*arg == 'j' || *arg == 't' || *arg == 'z')
-		parsing->lenght = *arg++;
-	
+	else if (arg[i] == 'j' || arg[i] == 't' || arg[i] == 'z')
+		i++;
+	return(i);
 }
