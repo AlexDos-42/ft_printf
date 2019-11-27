@@ -1,44 +1,47 @@
 #include "ft_printf.h"
 
-void   ft_flags(char **arg, t_parsing *parsing)
+void   ft_flags(char *arg, t_parsing *parsing)
 {
 	if (*arg)
 	{ 
-		while (arg == '-' || arg == '+' || arg == '0' || arg == " " || arg == "#")
+		while (arg[i] == '-' || arg[i] == '+' || arg[i] == '0' || arg[i] == ' ' || arg[i] == '#')
 		{
-		if (arg == '-')
-			parsing->flags- = -1;
-		if (arg == '0' && parsing->flags- != -1)
+		if (arg[i] == '-')
+			parsing->flagstiret = -1;
+		if (arg[i] == '0' && parsing->flagstiret != -1)
 			parsing->flags0 = 1;
-		if (parsing->flags- == 1)
+		if (parsing->flagstiret == 1)
 			parsing->flags0 = 0;
 		}
 	}
 }
 
 
-void	ft_width(char **arg, t_parsing *parsing)
+void	ft_width(char *arg, t_parsing *parsing)
 {
-
-	if (*arg && ft_isdigit(*arg))
+	int i;
+	
+	i = 0;
+	if (*arg && ft_isdigit(arg[i]))
 	{
-		if (parsing->flags- = -1;)
-			parsing->flags- = 1;
-		parsing->width = ft_atoi(*arg);
-		while (ft_isdigit(*arg))
-			*arg++;
+		if (parsing->flagstiret = -1;)
+			parsing->flagstiret = 1;
+		parsing->width = ft_atoi(arg[i]);
+		while (ft_isdigit(arg[i]))
+			i++;
 	}
-	else if (*arg && *arg == "*")	
+	else if (*arg && arg[i] == "*")	
 	{
 		if (parsing->flags- = -1;)
 			parsing->flags- = 1;
 		parsing->width = va_arg(*va, unsigned int)
-		*arg++;
-	}	
+		i++;
+	}
+	return (i);
 
 }
 
-void	ft_precision(char **arg, t_parsing *parsing)
+void	ft_precision(char *arg, t_parsing *parsing)
 {
 	if (*arg && *arg == '.')
 	{
@@ -57,7 +60,7 @@ void	ft_precision(char **arg, t_parsing *parsing)
 	}
 }
 
-void	ft_lenght(char **arg, t_parsing *parsing)
+void	ft_lenght(char *arg, t_parsing *parsing)
 {
 	if (*arg && *arg == 'l')
 	{
