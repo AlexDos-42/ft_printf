@@ -31,13 +31,13 @@ void		ft_init_parsing(t_parsing *parsing)
 	parsing->aff = NULL;
 }
 
-void		ft_parsing(char *arg, va_list va)
+void		ft_parsing(char *arg, va_list va, parsing)
 {
 	ft_format(&arg, &parsing);
-	ft_width(&arg, &parsing);
-	ft_precision(&arg, &parsing);
+	ft_width(&arg, va, &parsing);
+	ft_precision(&arg, va, &parsing);
 	ft_lenght(&arg, &parsing);
-	ft_type(&arg, &parsing);
+	ft_type(&arg, va, &parsing);
 }
 
 char 	*ft_format(char **arg, va_list va, t_parsing *parsing)
@@ -50,7 +50,7 @@ char 	*ft_format(char **arg, va_list va, t_parsing *parsing)
 		ft_init_parsing(parsing);
 		if (*arg == '%')
 		{
-			arg++ += ft_parsing(&arg, va);
+			arg++ += ft_parsing(&arg, va, parsing);
 			if (parsing->aff)
 				tmp = ft_strjoin(put, parsing->aff);
 		}
