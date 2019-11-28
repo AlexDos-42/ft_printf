@@ -90,7 +90,7 @@ int	ft_printf(const char *format, ...)
 		return (0);
 	va_start(va, format);
 	arg = (char *)format;
-	put = ft_boucle(&arg, va, parsing);
+	put = ft_boucle(arg, &va, parsing);
 	ft_putstr_fd(put, 1);
 	len = ft_strlen(put);
 	va_end(va);
