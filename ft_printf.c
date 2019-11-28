@@ -66,7 +66,7 @@ char 	*ft_boucle(char *arg, va_list va, t_parsing *parsing)
 		}
 		else 
 		{
-			tmp = ft_strjoin_c(put, parsing->aff);
+			tmp = ft_strjoin_c(put, *arg);
 			arg++;
 		}
 		free(parsing->aff);
