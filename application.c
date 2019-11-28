@@ -56,7 +56,7 @@ void		ft_flagsapp(t_parsing *parsing)
 	parsing->aff = tmp;
 }
 
-ft_app
+void		ft_app(char arg, t_parsing *parsing)
 {
 	ft_s_precisionapp(char arg, t_parsing *parsing);
 	ft_precisionappnbr(t_parsing *parsing);
