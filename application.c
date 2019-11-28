@@ -1,3 +1,5 @@
+#include "ft_printf.h"
+
 void		ft_precisionapp(char **arg, t_parsing *parsing)
 {
 	char	*tmp;
