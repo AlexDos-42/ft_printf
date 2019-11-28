@@ -19,7 +19,7 @@ void ft_type(char type, va_list va, t_parsing *parsing)
 		parsing->aff = ft_itoa_base(va_arg(*ap, unsigned long), 16);
 	else if (type == 'p')
 		parsing->aff = ft_itoa_base(va_arg(*ap, unsigned long), 16);
-	returni
+	return(i);
 }
 
 void		ft_init_parsing(t_parsing *parsing)
@@ -32,7 +32,7 @@ void		ft_init_parsing(t_parsing *parsing)
 	parsing->aff = NULL;
 }
 
-void		ft_parsing(char *arg, va_list va, parsing)
+void		ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 {
 	int i;
 	
@@ -60,7 +60,7 @@ char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing)
 		{
 			ft_init_parsing(parsing);
 			arg++;
-			arg += ft_parsing(arg, va, parsing);
+			arg += ft_parsing(arg, &va, parsing);
 			if (parsing->aff)
 				tmp = ft_strjoin(put, parsing->aff);
 		}
