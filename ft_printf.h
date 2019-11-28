@@ -17,10 +17,10 @@ typedef struct		s_parsing
 	int		flags0;
 }			t_parsing;
 
-void   ft_flags(char **arg, t_parsing *parsing);
-void   ft_width(char **arg, va_list *va, t_parsing *parsing);
-void	ft_precision(char **arg, va_list *va, t_parsing *parsing);
-void	ft_lenght(char **arg, t_parsing *parsing);
+int   ft_flags(char arg, t_parsing *parsing);
+int   ft_width(char arg, va_list *va, t_parsing *parsing);
+int     ft_precision(char arg, va_list *va, t_parsing *parsing);
+int     ft_lenght(char arg, t_parsing *parsing);
 
 void		ft_flagsapp(t_parsing *parsing);
 void		ft_s_precisionapp(char arg, t_parsing *parsing);
