@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-void ft_type(char type, va_list va, t_parsing *parsing)
+void ft_type(char type, va_list *va, t_parsing *parsing)
 {
 	if (type == 'c')
 		parsing->aff = ft_cdup(va_arg(*va, int));
@@ -9,17 +9,16 @@ void ft_type(char type, va_list va, t_parsing *parsing)
 		parsing->aff = ft_cdup('%');
 	else if (type == 's')
 		parsing->aff = ft_strdup(va_arg(*va, char*));
-	else if (type == 'd' || *arg == 'i')
+	else if (type == 'd' || type == 'i')
 		parsing->aff = ft_itoa(va_arg(*va, int));
 	else if (type == 'u')
 		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 10); 
 	else if (type == 'x')
-		parsing->aff = ft_itoa_base(va_arg(*ap, unsigned long), 16);
+		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 16);
 	else if (type == 'X')
-		parsing->aff = ft_itoa_base(va_arg(*ap, unsigned long), 16);
+		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 16);
 	else if (type == 'p')
-		parsing->aff = ft_itoa_base(va_arg(*ap, unsigned long), 16);
-	return(i);
+		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 16);
 }
 
 void		ft_init_parsing(t_parsing *parsing)
@@ -32,7 +31,7 @@ void		ft_init_parsing(t_parsing *parsing)
 	parsing->aff = NULL;
 }
 
-void		ft_parsing(char *arg, va_list *va, t_parsing *parsing)
+int		ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 {
 	int i;
 	
@@ -42,9 +41,9 @@ void		ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	i +=ft_precision(&arg[i], va, parsing);
 	//i +=ft_lenght(&arg[i], parsing);
 	ft_type(&arg[i], va, parsing);
-	if (&arg[i] == 'c' || &arg[i] == 'd' || &arg[i] == 'i' || &arg[i] == '%' || &arg[i] == 'x' ||
-		&arg[i] == 'X' ||  &arg[i] == 'p' ||  &arg[i] == 's')
-		return (i);
+	if (arg[i] == 'c' || arg[i] == 'd' || arg[i] == 'i' || arg[i] == '%' || arg[i] == 'x' ||
+		arg[i] == 'X' ||  arg[i] == 'p' ||  arg[i] == 's')
+		return (++i);
 	return (0);
 }
 
