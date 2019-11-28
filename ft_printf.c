@@ -48,7 +48,7 @@ void		ft_parsing(char *arg, va_list va, parsing)
 	return (0);
 }
 
-char 	*ft_boucle(char *arg, va_list va, t_parsing *parsing)
+char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing)
 {
 	char *tmp;
 	char *put;
