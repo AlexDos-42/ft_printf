@@ -2,6 +2,9 @@
 
 int   ft_flags(char *arg, t_parsing *parsing)
 {
+	int i;
+
+        i = 0;
 	if (*arg)
 	{ 
 		while (arg[i] == '-' || arg[i] == '+' || arg[i] == '0' || arg[i] == ' ' || arg[i] == '#')
