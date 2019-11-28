@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void   ft_flags(char *arg, t_parsing *parsing)
+int   ft_flags(char *arg, t_parsing *parsing)
 {
 	if (*arg)
 	{ 
@@ -12,12 +12,14 @@ void   ft_flags(char *arg, t_parsing *parsing)
 			parsing->flags0 = 1;
 		if (parsing->flagstiret == 1)
 			parsing->flags0 = 0;
+		i++;
 		}
 	}
+	return (i);
 }
 
 
-void	ft_width(char *arg, t_parsing *parsing)
+int	ft_width(char *arg, t_parsing *parsing)
 {
 	int i;
 	
@@ -41,7 +43,7 @@ void	ft_width(char *arg, t_parsing *parsing)
 
 }
 
-void	ft_precision(char *arg, t_parsing *parsing)
+int	ft_precision(char *arg, t_parsing *parsing)
 {
 	int i;
 	
@@ -64,7 +66,7 @@ void	ft_precision(char *arg, t_parsing *parsing)
 	return (i);
 }
 
-void	ft_lenght(char *arg, t_parsing *parsing)
+int	ft_lenght(char *arg, t_parsing *parsing)
 {
 	int i;
 	
