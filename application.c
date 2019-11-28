@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void		ft_precisionapp(char arg, t_parsing *parsing)
+void		ft_s_precisionapp(char arg, t_parsing *parsing)
 {
 	char	*tmp;
 	int		i;
@@ -18,7 +18,7 @@ void		ft_precisionappnbr(t_parsing *parsing)
 	int		i;
 
 	i = 0;
-	if (parsing->precisionp > ((int)ft_strlen(parsing->aff) - (parsing->aff[0] == '-')))
+	if (parsing->precision > ((int)ft_strlen(parsing->aff) - (parsing->aff[0] == '-')))
 	{
 		if (!(tmp = malloc(sizeof(char*) * (parsing->precision + (parsing->aff[0] == '-') + 1))))
 			return ;
@@ -39,7 +39,7 @@ void		ft_flagsapp(t_parsing *parsing)
 	int		abs;
 
 	i = 0;
-	abs = ((parsing->flags- > 0) ? parsing->flags- : -parsing->flags-);
+	abs = ((parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret);
 	if (parsing->flags0 > abs)
 		abs = parsing->flags0;
 	tmp = malloc(sizeof(char) * (abs + 1));
@@ -48,7 +48,7 @@ void		ft_flagsapp(t_parsing *parsing)
 	while (abs-- > (int)ft_strlen(parsing->aff))
 		tmp[i++] = ' ';
 	tmp[i] = '\0';
-	if (parsing->flags- > 0)
+	if (parsing->flagstiret > 0)
 		tmp = ft_strjoin(tmp, parsing->aff);
 	else
 		tmp = ft_strjoin(parsing->aff, tmp);
