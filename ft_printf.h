@@ -9,7 +9,7 @@
 
 typedef struct		s_parsing
 {
-	int		flags;
+	int		flagstiret;
 	int		precision;
 	int		width;
 	char		*aff;
