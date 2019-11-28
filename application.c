@@ -55,3 +55,10 @@ void		ft_flagsapp(t_parsing *parsing)
 	free(parsing->aff);
 	parsing->aff = tmp;
 }
+
+ft_app
+{
+	ft_s_precisionapp(char arg, t_parsing *parsing);
+	ft_precisionappnbr(t_parsing *parsing);
+	ft_flagsapp(t_parsing *parsing);
+}
