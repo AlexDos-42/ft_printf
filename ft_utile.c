@@ -51,7 +51,7 @@ char	*ft_itoa_base(int nbr, int base)
 		i++;
 	i += 1;
 	n = (nbr < 0) ? -nbr : nbr;
-	if (!(str = (char *)ft_calloc(sizeof(char) * (i + 1))))
+	if (!(str = (char *)ft_calloc(sizeof(char), (i + 1))))
 		return (NULL);
 	while (i--)
 	{
