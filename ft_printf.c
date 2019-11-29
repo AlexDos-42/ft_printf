@@ -41,7 +41,7 @@ int		ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	i +=ft_precision(&arg[i], va, parsing);
 	//i +=ft_lenght(&arg[i], parsing);
 	ft_type(&arg[i], va, parsing);
-	ft_app;
+	ft_app(&arg[i], parsing);
 	if (arg[i] == 'c' || arg[i] == 'd' || arg[i] == 'i' || arg[i] == '%' || arg[i] == 'x' ||
 		arg[i] == 'X' ||  arg[i] == 'p' ||  arg[i] == 's')
 		return (++i);
