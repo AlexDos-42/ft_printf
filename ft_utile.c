@@ -18,18 +18,16 @@ char	*ft_cdup(char c)
 char	*ft_strjoin_c(char const *s1, char c)
 {
 	int		i;
-	int		j;
 	char	*str;
 
 	i = 0;
-	j = 0;
-	if (!s1 || !c)
+	if (!c)
 		return (NULL);
-	if (!(str = malloc(sizeof(char) * (ft_strlen(s1) + c + 1))))
+	if (!(str = malloc(sizeof(char) * (ft_strlen(s1) + 2))))
 		return (NULL);
-	while (s1[i] != '\0')
+	while (s1 && *s1)
 	{
-		str[i] = s1[i];
+		str[i] = *s1++;
 		i++;
 	}
 	str[i++] = c;
@@ -41,21 +39,21 @@ char	*ft_itoa_base(int nbr, char *base)
 {
 	char	*str;
 	int	i;
-	int	sign;
 	int	n;
 	int 	basesize;
-	
+
 	i = 0;
-	base_size = ft_strlen(base);
-	while ((n /= base) >= 1)
+	basesize = ft_strlen(base);
+	n = nbr;
+	while ((n /= basesize) >= 1)
 		i++;
 	i += 1;
 	if (!(str = (char *)ft_calloc(sizeof(char), (i + 1))))
 		return (NULL);
 	while (i--)
 	{
-		str[i + sign] = base[(n % base < 10) ? n % base + '0' : n % base + 'a' - 10];
-		n /= base;
+		str[i] = base[nbr % basesize];
+		nbr /= basesize;
 	}
 	return (str);
 }

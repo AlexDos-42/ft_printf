@@ -29,17 +29,15 @@ int	ft_width(char *arg, va_list *va, t_parsing *parsing)
 	i = 0;
 	if (*arg && ft_isdigit(arg[i]))
 	{
-		if (parsing->flagstiret = -1)
-			parsing->flagstiret = 1;
-		parsing->width = ft_atoi(arg);
+		parsing->flagstiret *= ft_atoi(arg);
+		parsing->flags0 *= parsing->flagstiret;
 		while (ft_isdigit(arg[i]))
 			i++;
 	}
 	else if (*arg && arg[i] == '*')	
 	{
-		if (parsing->flagstiret = -1)
-			parsing->flagstiret = 1;
-		parsing->width = va_arg(*va, unsigned int);
+		parsing->flagstiret *= va_arg(*va, unsigned int);
+		parsing->flags0 *= parsing->flagstiret;
 		i++;
 	}
 	return (i);
