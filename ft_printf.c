@@ -93,6 +93,7 @@ int	ft_printf(const char *format, ...)
 	ft_putstr_fd(put, 1);
 	len = ft_strlen(put);
 	va_end(va);
+	free(put);
 	return (len);
 }
 /*
