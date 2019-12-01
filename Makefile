@@ -1,11 +1,10 @@
-NAME = ft_printf.a
+NAME = libftprint.a
 
-SRCS = $(addprefix ./src/
-	ft_printf.c\
-  application.c \
-  ft_parsing.c\
-  ft_utile.c\)
-
+SRCS =		ft_printf.c \
+  		application.c \
+		ft_parsing.c \
+		ft_utile.c \
+		
 HEADERS	= -I./include/
 
 FLAGS = -Wall -Wextra -Werror -g3
