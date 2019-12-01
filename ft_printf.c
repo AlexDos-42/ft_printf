@@ -12,11 +12,11 @@ void ft_type(char type, va_list *va, t_parsing *parsing)
 	else if (type == 'd' || type == 'i')
 		parsing->aff = ft_itoa(va_arg(*va, int));
 	else if (type == 'u')
-		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 10); 
+		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), "0123456789"); 
 	else if (type == 'x')
-		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 16);
+		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), "0123456789abcedf");
 	else if (type == 'X')
-		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 16);
+		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), "0123456789ABCDEF");
 	else if (type == 'p')
 		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), 16);
 }
