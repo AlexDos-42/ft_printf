@@ -61,5 +61,6 @@ void		ft_app(char arg, t_parsing *parsing)
 	ft_s_precisionapp(char arg, t_parsing *parsing);
 	if (parsing->precision >= 0 && (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg =='%')
 		ft_precisionappnbr(t_parsing *parsing);
-	ft_flagsapp(t_parsing *parsing);
+	if (parsing->flags0 != 0)
+		ft_flagsapp(t_parsing *parsing);
 }
