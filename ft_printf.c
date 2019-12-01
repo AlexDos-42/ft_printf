@@ -61,7 +61,7 @@ char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing)
 			ft_init_parsing(parsing);
 			arg++;
 			if ((i = ft_parsing(arg, &va, parsing) == -1)
-			    return (-1);
+			    return (NULL);
 			arg += i;
 			if (parsing->aff)
 				tmp = ft_strjoin(put, parsing->aff);
