@@ -86,7 +86,7 @@ void		ft_app(char arg, t_parsing *parsing)
 	if (arg == 'p')
 	{
 		tmp = ft_strjoin("0x", parsing->aff);
-		//free(parsing->aff);
+		free(parsing->aff);
 		parsing->aff = tmp;
 	}
 	ft_flagsapp(parsing);
