@@ -1,5 +1,7 @@
 NAME = libftprint.a
 
+PATH_SRCS =	./srcs/
+
 SRCS =		ft_printf.c \
   		application.c \
 		ft_parsing.c \
