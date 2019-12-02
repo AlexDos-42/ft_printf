@@ -17,6 +17,12 @@ typedef struct		s_parsing
 	int		flags0;
 }			t_parsing;
 
+int	ft_printf(const char *format, ...);
+char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing);
+int		ft_parsing(char *arg, va_list *va, t_parsing *parsing);
+void		ft_init_parsing(t_parsing *parsing);
+void		ft_init_parsing(t_parsing *parsing);
+
 int   ft_flags(char *arg, t_parsing *parsing);
 int   ft_width(char *arg, va_list *va, t_parsing *parsing);
 int     ft_precision(char *arg, va_list *va, t_parsing *parsing);
