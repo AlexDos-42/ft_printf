@@ -1,8 +1,6 @@
 NAME = libft.a
 
-SRCS
-
-SRCS_libft = ft_atoi.c \
+SRCS = ft_atoi.c \
        ft_isalpha.c \
        ft_bzero.c \
        ft_isascii.c \
@@ -16,7 +14,6 @@ SRCS_libft = ft_atoi.c \
        ft_memcpy.c \
        ft_memcmp.c \
        ft_memset.c \
-       ft_putchar \
        ft_putchar_fd.c \
        ft_putendl_fd.c \
        ft_putstr.c \
@@ -53,8 +50,8 @@ FLAGS = -Wall -Wextra -Werror -g3
 all: ${NAME}
 
 $(NAME): 
-	gcc $(FLAGS) -c $(SRCS) $(SRCS_LIBFT) -I .
-	ar rc $(NAME) $(SRCS_LIBFT:.c=.o) $(SRCS:.c=.o) $^
+	gcc $(FLAGS) -c $(SRCS) -I .
+	ar rc $(NAME) $(SRCS:.c=.o) $^
 	ranlib $(NAME)
 
 clean:

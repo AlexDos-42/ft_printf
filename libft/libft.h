@@ -71,7 +71,6 @@ t_list					*ft_lstmap(t_list *lst,
 unsigned int			ft_strlcat(char *dest, const char *src, size_t size);
 size_t					ft_strlcpy(char *dest, const char *src, size_t n);
 void					*ft_calloc(size_t count, size_t size);
-void					ft_putchar(char c);
 void	ft_putstr(char const *s);
 
 #endif
