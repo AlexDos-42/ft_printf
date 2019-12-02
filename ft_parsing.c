@@ -66,32 +66,3 @@ int	ft_precision(char *arg, va_list *va, t_parsing *parsing)
 	}
 	return (i);
 }
-
-int	ft_lenght(char *arg, t_parsing *parsing)
-{
-	int i;
-	
-	i = 0;
-	if (*arg && arg[i] == 'l')
-	{
-		parsing->lenght = 'l';
-		if (arg[++i] == '1')
-		{
-			parsing->lenght = '2';
-			i++;
-		}
-
-	}
-	else if (*arg && arg[i] == 'h')
-	{
-		parsing->lenght = '3';
-		if (arg[++i] == 'h')
-		{
-			parsing->lenght = '4';
-			i++;
-		}
-	}
-	else if (arg[i] == 'j' || arg[i] == 't' || arg[i] == 'z')
-		i++;
-	return(i);
-}
