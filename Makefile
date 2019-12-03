@@ -1,29 +1,36 @@
-NAME = libftprint.a
+NAME = libftprintf.a
 
 SRCS =		ft_printf.c \
   		application.c \
 		ft_parsing.c \
 		ft_utile.c \
-		main.c \
 
-HEADERS	= -I./include/
+SRCSLIB = *.c \
 
-FLAGS = -Wall -Wextra -Werror -g
+HEADERS	= -I ./include/
+
+FLAGS = -Wall -Wextra -Werror
 
 OBJ	= $(SRCS:.c=.o)
 
 all: ${NAME}
 
 $(NAME):
-	make -C ./libft/
-	gcc -L./libft -lft $(FLAGS) -o $(NAME) $(SRCS) $(HEADERS)
+	@echo "Compilation de ft_printf..."
+	@(make -C ./libft/)
+	@(gcc $(FLAGS) -c $(SRCS) -I .)
+	@(ar rc $(NAME) $(OBJ) ./libft/*.o)
+	@echo "Compilation terminée"
 
 clean:
-	make clean -C ./libft/
-	rm -rf $(SRCS:.c=.o)
+	@echo "Clean"
+	@(make clean -C ./libft/)
+	@rm -rf $(SRCS:.c=.o)
 
 fclean:	clean
-	rm -rf $(NAME)
+	@echo "Fclean"
+	@(make fclean -C ./libft/)
+	@(rm -rf $(NAME))
 
 re:	fclean all
 

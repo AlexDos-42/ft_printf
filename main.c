@@ -1,17 +1,16 @@
 #include "ft_printf.h"
 
 
-/*
+
 int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	ft_printf("debut %x fin\n____\n", 1100);
-	ft_printf("%x\n____\n", 1100);
-	printf("debut %x fin\n____\n", 1100);
+	ft_printf("debut __%s__ fin\n____\n", "");
+	printf("debut __%s__ fin\n____\n", "");
 	return (0);
 }
-*/
+/*
 int main(void)
 {
     int test1 = 1000000000;
@@ -31,19 +30,17 @@ int main(void)
     printf("-----Test normaux-----\n");
     printf("test printf\n");
     ft_printf("test printf\n");
- //   printf("\0");
- //   ft_printf("\0");
-//    printf("");
- //   ft_printf("");
+    printf("");
+    ft_printf("");
     printf("-----Test %%c-----\n");
     printf("%c\n", 'k');
     ft_printf("%c\n", 'k');
-//  printf("%c\n", '\n');
-//  ft_printf("%c\n", '\n');
-//  printf("%c\n", '\0');
-//  ft_printf("%c\n", '\0');
-//  printf("test avec 0 : '%c'\n", 0);
-//  ft_printf("test avec 0 : '%c'\n", 0);
+  printf("%c\n", '\n');
+  ft_printf("%c\n", '\n');
+  printf("%c\n", '\0');
+  ft_printf("%c\n", '\0');
+  printf("test avec 0 : '%c'\n", 0);
+  ft_printf("test avec 0 : '%c'\n", 0);
     printf("-----Test %%s-----\n");
     printf("%s\n", "POULOULOU");
     ft_printf("%s\n", "POULOULOU");
@@ -119,17 +116,17 @@ int main(void)
     ft_printf("Pourcent X: '%10X'\n", 1000);
     printf("Pourcent X: '%-10X'\n", 1000);
     ft_printf("Pourcent X: '%-10X'\n", 1000);
- //   printf("Pourcent pourcent : '%10%'\n");
- //   ft_printf("Pourcent pourcent : '%10%'\n");
- //   printf("Pourcent pourcent : '%-10%'\n");
- //   ft_printf("Pourcent pourcent : '%-10%'\n");
+    printf("Pourcent pourcent : '%10%'\n");
+    ft_printf("Pourcent pourcent : '%10%'\n");
+    printf("Pourcent pourcent : '%-10%'\n");
+    ft_printf("Pourcent pourcent : '%-10%'\n");
     printf("-----Test precision-----\n");
-//    printf("Pourcent c: '%.10c'\n", 'o');
-//    ft_printf("Pourcent c: '%.10c'\n", 'o');
+    printf("Pourcent c: '%.10c'\n", 'o');
+    ft_printf("Pourcent c: '%.10c'\n", 'o');
     printf("Pourcent s: '%.10s'\n", "hohohohohohohoho");
     ft_printf("Pourcent s: '%.10s'\n", "hohohohohohohoho");
-//    printf("Pourcent p: '%.20p'\n", test6);
-//    ft_printf("Pourcent p: '%.20p'\n", test6);
+    printf("Pourcent p: '%.20p'\n", test6);
+    ft_printf("Pourcent p: '%.20p'\n", test6);
     printf("Pourcent d: '%.10d'\n", 42);
     ft_printf("Pourcent d: '%.10d'\n", 42);
     printf("Pourcent u: '%.10u'\n", 100);
@@ -138,8 +135,8 @@ int main(void)
     ft_printf("Pourcent x: '%.10x'\n", 1000);
     printf("Pourcent X: '%.10X'\n", 1000);
     ft_printf("Pourcent X: '%.10X'\n", 1000);
-   // printf("Pourcent pourcent : '%.10%'\n");
-  //  ft_printf("Pourcent pourcent : '%.10%'\n");
+    printf("Pourcent pourcent : '%.10%'\n");
+    ft_printf("Pourcent pourcent : '%.10%'\n");
     printf("Pourcent D: '%5.d' '%5.0d'\n", 0, 0);
     ft_printf("Pourcent D: '%5.d' '%5.0d'\n", 0, 0);
     printf("-----Test +- #0-----\n");
@@ -159,13 +156,13 @@ int main(void)
     ft_printf("zero positif '%010d'\n", 1000);
     printf("zero negatif '%010d'\n", -1000);
     ft_printf("zero negatif '%010d'\n", -1000);
-  //  printf("zero negatif '%010.6d'\n", -1000);
-   // ft_printf("zero negatif '%10.6d'\n", -1000);
- //   printf("zero + prec '%-010d'\n", -1000);
-//    ft_printf("zero + prec '%-010d'\n", -1000);
+    printf("zero negatif '%010.6d'\n", -1000);
+    ft_printf("zero negatif '%10.6d'\n", -1000);
+    printf("zero + prec '%-010d'\n", -1000);
+    ft_printf("zero + prec '%-010d'\n", -1000);
     printf("----------------------------------\n");
-/*  printf("VALEURS DE RETOUR de \\0 = %d\n", printf("%c", '\0'));
-    printf("VALEURS DE RETOUR de \\0 = %d\n", ft_printf("%c", '\0'));*/
+  printf("VALEURS DE RETOUR de \\0 = %d\n", printf("%c", '\0'));
+//    printf("VALEURS DE RETOUR de \\0 = %d\n", ft_printf("%c", '\0'));
     printf("vrai printf avec -.2s '%-.2s'\n", "");
     ft_printf("mien printf avec -.2s '%-.2s'\n", "");
-}
+i}*/
