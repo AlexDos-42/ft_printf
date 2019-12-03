@@ -35,11 +35,11 @@ char	*ft_strjoin_c(char const *s1, char c)
 	return (str);
 }
 
-char	*ft_itoa_base(int nbr, char *base)
+char	*ft_itoa_base(unsigned long nbr, char *base)
 {
 	char	*str;
 	int	i;
-	int	n;
+	unsigned long		n;
 	int 	basesize;
 
 	i = 0;
