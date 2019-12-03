@@ -51,13 +51,11 @@ int	ft_precision(char *arg, va_list *va, t_parsing *parsing)
 	i = 0;
 	if (*arg && arg[i] == '.')
 	{
-		i++;
+		arg++;	
 		parsing->precision = 0;
-		printf("precision ||| %d\n", parsing->precision);
 		if (*arg && ft_isdigit(arg[i]))
 		{
 			parsing->precision = ft_atoi(arg);
-		printf("precision ||| %d\n arg %s\n", parsing->precision, arg);
 			while (ft_isdigit(arg[i]))
 				i++;
 		}
@@ -66,6 +64,7 @@ int	ft_precision(char *arg, va_list *va, t_parsing *parsing)
 			parsing->precision = va_arg(*va, unsigned int);
 			i++;
 		}
+	i++;
 	}
 	return (i);
 }

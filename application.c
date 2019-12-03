@@ -23,7 +23,7 @@ void		ft_precisionappnbr(t_parsing *parsing)
 			return ;
 		if (parsing->aff[0] == '-')
 			tmp[i++] = '-';
-		while (parsing->precision > ((int)ft_strlen(parsing->aff)) - (parsing->aff[0] == '-'))
+		while (parsing->precision-- > ((int)ft_strlen(parsing->aff)) - (parsing->aff[0] == '-'))
 			tmp[i++] = '0';
 		tmp[i] = '\0';
 		tmp = ft_strjoin(tmp, &(parsing->aff[(parsing->aff[0] == '-')]));
