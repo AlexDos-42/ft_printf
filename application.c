@@ -35,15 +35,15 @@ void		ft_flagsapp(t_parsing *parsing)
 {
 	char	*tmp;
 	int		i;
-	int		abs;
+	int		j;
 
 	i = 0;
-	abs = ((parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret);
-	if (parsing->flags0 > abs)
-		abs = parsing->flags0;
-	if (!(tmp = malloc(sizeof(char) * (abs + 1))))
+	j = ((parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret);
+	if (parsing->flags0 > j)
+		j = parsing->flags0;
+	if (!(tmp = malloc(sizeof(char) * (j + 1))))
 		return ;
-	while (abs-- > (int)ft_strlen(parsing->aff))
+	while (j-- > ((parsing->aff != NULL ? ft_strlen(parsing->aff) : 0)))
 		tmp[i++] = ' ';
 	tmp[i] = '\0';
 	if (parsing->flagstiret > 0)

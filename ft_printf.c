@@ -23,7 +23,7 @@ void ft_type(char type, va_list *va, t_parsing *parsing)
 
 void		ft_init_parsing(t_parsing *parsing)
 {
-	parsing->flagstiret = 1;
+	parsing->flagstiret = 0;
 	parsing->flags0 = 0;
 	parsing->precision = -1;
 	parsing->aff = NULL;
@@ -61,7 +61,7 @@ char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing)
 			if (parsing->aff)
 				tmp = ft_strjoin(put, parsing->aff);
 		}
-		else 
+		if (!parsing->aff) 
 		{
 			tmp = ft_strjoin_c(put, *arg);
 			arg++;

@@ -4,18 +4,18 @@ int   ft_flags(char *arg, t_parsing *parsing)
 {
 	int i;
 
-        i = 0;
+	i = 0;
 	if (*arg)
 	{ 
 		while (arg[i] == '-' || arg[i] == '+' || arg[i] == '0' || arg[i] == ' ' || arg[i] == '#')
 		{
-		if (arg[i] == '-')
-			parsing->flagstiret = -1;
-		if (arg[i] == '0' && parsing->flagstiret != -1)
-			parsing->flags0 = 1;
-		if (parsing->flagstiret == 1)
-			parsing->flags0 = 0;
-		i++;
+			if (arg[i] == '-')
+				parsing->flagstiret = -1;
+			if (arg[i] == '0' && parsing->flagstiret != -1)
+				parsing->flags0 = 1;
+			if (parsing->flagstiret == -1)
+				parsing->flags0 = 0;
+			i++;
 		}
 	}
 	return (i);
@@ -25,10 +25,12 @@ int   ft_flags(char *arg, t_parsing *parsing)
 int	ft_width(char *arg, va_list *va, t_parsing *parsing)
 {
 	int i;
-	
+
 	i = 0;
 	if (*arg && ft_isdigit(arg[i]))
 	{
+		if (parsing->flagstiret == 0 || parsing->flagstiret == -1)
+			parsing->flagstiret = 1;
 		parsing->flagstiret *= ft_atoi(arg);
 		parsing->flags0 *= parsing->flagstiret;
 		while (ft_isdigit(arg[i]))
@@ -36,6 +38,8 @@ int	ft_width(char *arg, va_list *va, t_parsing *parsing)
 	}
 	else if (*arg && arg[i] == '*')	
 	{
+		if (parsing->flagstiret == 0 || parsing->flagstiret == -1)
+			parsing->flagstiret = 1;
 		parsing->flagstiret *= va_arg(*va, unsigned int);
 		parsing->flags0 *= parsing->flagstiret;
 		i++;
@@ -47,7 +51,7 @@ int	ft_width(char *arg, va_list *va, t_parsing *parsing)
 int	ft_precision(char *arg, va_list *va, t_parsing *parsing)
 {
 	int i;
-	
+
 	i = 0;
 	if (*arg && arg[i] == '.')
 	{
@@ -64,7 +68,7 @@ int	ft_precision(char *arg, va_list *va, t_parsing *parsing)
 			parsing->precision = va_arg(*va, unsigned int);
 			i++;
 		}
-	i++;
+		i++;
 	}
 	return (i);
 }

@@ -32,8 +32,9 @@ void		ft_flagsapp(t_parsing *parsing);
 void		ft_s_precisionapp(char arg, t_parsing *parsing);
 void		ft_precisionappnbr(t_parsing *parsing);
 void		ft_app(char arg, t_parsing *parsing);
-	
-char	*ft_itoa_base(int nbr, char *base);
+void		ft_exception(t_parsing *parsing, char arg);
+
+char	*ft_itoa_base(unsigned long  nbr, char *base);
 char	*ft_strjoin_c(char const *s1, char c);
 char	*ft_cdup(char c);
 
