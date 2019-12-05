@@ -25,7 +25,7 @@ $(NAME):
 clean:
 	@echo "Clean"
 	@(make clean -C ./libft/)
-	@rm -rf $(SRCS:.c=.o)
+	@(rm -rf $(SRCS:.c=.o))
 
 fclean:	clean
 	@echo "Fclean"
