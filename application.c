@@ -41,7 +41,7 @@ void		ft_flagsapp(t_parsing *parsing)
 	j = ((parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret);
 	if (parsing->flags0 > j)
 		j = parsing->flags0;
-	if (!(tmp = malloc(sizeof(char) * (j + 1))))
+	if (!(tmp = ft_calloc(sizeof(char), (j + 1))))
 		return ;
 	while (j-- > ((parsing->aff != NULL ? ft_strlen(parsing->aff) : 0)))
 		tmp[i++] = ' ';
@@ -66,13 +66,11 @@ void		ft_exception(t_parsing *parsing, char arg)
 			free(parsing->aff);
 			parsing->aff = tmp;
 		}
-//		if (parsing->precision == -1)
-//			parsing->precision = (parsing->aff[0] == '-') ? parsing->flags0 - 1 : parsing->flags0;
-//		else if (parsing->precision < parsing->flags0 + (parsing->aff[0] == '-'))
-//			parsing->flagstiret = parsing->flags0;
+		if (parsing->precision == -1)
+			parsing->precision = (parsing->aff[0] == '-') ? parsing->flags0 - 1 : parsing->flags0;
+		else if (parsing->precision < parsing->flags0 + (parsing->aff[0] == '-'))
+			parsing->flagstiret = parsing->flags0;
 	}
-	if (parsing->aff == NULL && arg == 's')
-		parsing->aff = ft_strdup("(null)");
 }
 
 void		ft_app(char arg, t_parsing *parsing)
@@ -85,9 +83,21 @@ void		ft_app(char arg, t_parsing *parsing)
 		ft_precisionappnbr(parsing);
 	if (arg == 'p')
 	{
-		tmp = ft_strjoin("0x", parsing->aff);
-		free(parsing->aff);
-		parsing->aff = tmp;
+		if (!parsing->aff[0])
+		{
+			tmp = ft_strdup("(nil)");
+			free(parsing->aff);
+			parsing->aff = tmp;
+		}
+		else
+		{
+			tmp = ft_strjoin("0x", parsing->aff);
+			free(parsing->aff);
+			parsing->aff = tmp;
+		}
 	}
-	ft_flagsapp(parsing);
+	if (arg == 's' && !parsing->aff[0])
+		return ;
+	if (parsing->flagstiret != 0)
+		ft_flagsapp(parsing);
 }

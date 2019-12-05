@@ -70,6 +70,7 @@ char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing)
 		free(put);
 		put = tmp;
 	}
+	ft_init_parsing(parsing);
 	return (put);
 }
 
@@ -81,8 +82,6 @@ int	ft_printf(const char *format, ...)
 	char* put;
 	t_parsing *parsing;
 
-	if (format == NULL)
-		return (-1);
 	if (!(parsing = (t_parsing*)malloc(sizeof(t_parsing))))
 		return (0);
 	va_start(va, format);
@@ -91,6 +90,7 @@ int	ft_printf(const char *format, ...)
 	ft_putstr_fd(put, 1);
 	len = ft_strlen(put);
 	va_end(va);
+	free(parsing);
 	free(put);
 	return (len);
 }

@@ -35,16 +35,22 @@ char	*ft_strjoin_c(char const *s1, char c)
 	return (str);
 }
 
-char	*ft_itoa_base(unsigned long nbr, char *base)
+char	*ft_itoa_base(unsigned long long int nbr, char *base)
 {
 	char	*str;
 	int	i;
-	unsigned long		n;
+	unsigned long long int		n;
 	int 	basesize;
 
 	i = 0;
 	basesize = ft_strlen(base);
 	n = nbr;
+	if (nbr == 0)
+	{
+		if (!(str = (char *)ft_calloc(sizeof(char), 1)))
+			return (NULL); 
+		return(str);
+	}
 	while ((n /= basesize) >= 1)
 		i++;
 	i += 1;

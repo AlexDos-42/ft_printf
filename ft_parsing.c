@@ -29,7 +29,7 @@ int	ft_width(char *arg, va_list *va, t_parsing *parsing)
 	i = 0;
 	if (*arg && ft_isdigit(arg[i]))
 	{
-		if (parsing->flagstiret == 0 || parsing->flagstiret == -1)
+		if (parsing->flagstiret == 0)
 			parsing->flagstiret = 1;
 		parsing->flagstiret *= ft_atoi(arg);
 		parsing->flags0 *= parsing->flagstiret;
@@ -38,7 +38,7 @@ int	ft_width(char *arg, va_list *va, t_parsing *parsing)
 	}
 	else if (*arg && arg[i] == '*')	
 	{
-		if (parsing->flagstiret == 0 || parsing->flagstiret == -1)
+		if (parsing->flagstiret == 0)
 			parsing->flagstiret = 1;
 		parsing->flagstiret *= va_arg(*va, unsigned int);
 		parsing->flags0 *= parsing->flagstiret;
