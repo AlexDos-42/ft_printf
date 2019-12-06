@@ -42,7 +42,7 @@ int		ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	if (arg[i] == 'c' || arg[i] == 'd' || arg[i] == 'i' || arg[i] == '%' || arg[i] == 'x' ||
 			arg[i] == 'X' || arg[i] == 'u' || arg[i] == 'p' ||  arg[i] == 's')
 		return (++i);
-	return (-1);
+	return (0);
 }
 
 char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing)
@@ -94,11 +94,3 @@ int	ft_printf(const char *format, ...)
 	free(put);
 	return (len);
 }
-/*
-int	main(int ac, char **av)
-{
-	(void)ac;
-	ft_printf("debut %x fin\n____\n", 1100);
-	ft_printf("%x\n____\n", 1100);
-	printf("debut %x fin\n____\n", 1100);
-	return (0);*/
