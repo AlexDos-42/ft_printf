@@ -11,7 +11,7 @@ typedef struct		s_parsing
 {
 	int		flagstiret;
 	int		precision;
-	char	*aff;
+	char		*aff;
 	int		flags0;
 }			t_parsing;
 
