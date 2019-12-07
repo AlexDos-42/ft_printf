@@ -58,7 +58,7 @@ void		ft_exception(t_parsing *parsing, char arg)
 {
 	char	*tmp;
 
-	if (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg == '%' )
+	if (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg == 'p' )
 	{
 		if (parsing->precision == 0 && parsing->aff[0] == '0')
 		{
@@ -77,7 +77,7 @@ void		ft_app(char arg, t_parsing *parsing)
 
 	ft_exception(parsing, arg);
 	ft_s_precisionapp(arg, parsing);
-	if (parsing->precision >= 0 && (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg =='%'))
+	if (parsing->precision >= 0 && (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg =='p'))
 		ft_precisionappnbr(parsing);
 	if (arg == 'p')
 	{
@@ -96,6 +96,6 @@ void		ft_app(char arg, t_parsing *parsing)
 	}
 	if (arg == 's' && !parsing->aff[0])
 		return ;
-	if (parsing->flagstiret != 0)
+	if (parsing->flagstiret != 0 && arg != '%')
 		ft_flagsapp(parsing);
 }
