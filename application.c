@@ -4,7 +4,7 @@ void		ft_s_precisionapp(char arg, t_parsing *parsing)
 {
 	char	*tmp;
 
-	if (arg == 's' && parsing->precision > 0)
+	if ((arg == 's') && parsing->precision > 0)
 	{
 		tmp = ft_substr(parsing->aff, 0, parsing->precision);
 		free(parsing->aff);
@@ -58,7 +58,7 @@ void		ft_exception(t_parsing *parsing, char arg)
 {
 	char	*tmp;
 
-	if (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg =='%')
+	if (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg == '%' )
 	{
 		if (parsing->precision == 0 && parsing->aff[0] == '0')
 		{

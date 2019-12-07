@@ -16,7 +16,7 @@ typedef struct		s_parsing
 }			t_parsing;
 
 int	ft_printf(const char *format, ...);
-char 	*ft_boucle(char *arg, va_list *va, t_parsing *parsing);
+char 	*ft_boucle(char *arg, va_list *va);
 int		ft_parsing(char *arg, va_list *va, t_parsing *parsing);
 void		ft_init_parsing(t_parsing *parsing);
 void		ft_init_parsing(t_parsing *parsing);
