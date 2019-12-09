@@ -27,7 +27,7 @@ void		ft_precisionappnbr(t_parsing *parsing)
 		while (parsing->precision-- > (ft_strlen(parsing->aff)) - j)
 			tmp[i++] = '0';
 		tmp[i] = '\0';
-		tmp = ft_strjoin(tmp, &(parsing->aff[j]));
+		tmp = ft_strjoin(tmp, &(parsing->aff[j]), 1);
 		free(parsing->aff);
 		parsing->aff = tmp;
 	}
@@ -47,11 +47,9 @@ void		ft_flagsapp(t_parsing *parsing)
 		tmp[i++] = ' ';
 	tmp[i] = '\0';
 	if (parsing->flagstiret > 0)
-		tmp = ft_strjoin(tmp, parsing->aff);
+		parsing->aff = ft_strjoin(tmp, parsing->aff, 3);
 	else
-		tmp = ft_strjoin(parsing->aff, tmp);
-	free(parsing->aff);
-	parsing->aff = tmp;
+		parsing->aff = ft_strjoin(parsing->aff, tmp, 3);
 }
 
 void		ft_exception(t_parsing *parsing, char arg)
@@ -89,7 +87,7 @@ void		ft_app(char arg, t_parsing *parsing)
 		}
 		else
 		{
-			tmp = ft_strjoin("0x", parsing->aff);
+			tmp = ft_strjoin("0x", parsing->aff, 0);
 			free(parsing->aff);
 			parsing->aff = tmp;
 		}

@@ -167,4 +167,7 @@ int main(void)
 //    ft_printf("VALEURS DE RETOUR de \\0 = %d\n", ft_printf("%c", '\0'));
     printf("vrai printf avec -.2s '%-.2s'\n", "");
     ft_printf("mien printf avec -.2s '%-.2s'\n", "");
+    ft_printf("valeur : %d\n", ft_printf("bonjour %12s_\n", ""));
+    printf("valeur : %d\n", printf("bonjour %12s_\n", ""));
+    printf("bonjour %12s_\n", "\0");
 }

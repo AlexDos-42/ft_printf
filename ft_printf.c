@@ -60,7 +60,7 @@ char 	*ft_boucle(char *arg, va_list *va)
 			arg++;
 			arg += ft_parsing(arg, va, &parsing);
 			if (parsing.aff)
-				tmp = ft_strjoin(put, parsing.aff);
+				tmp = ft_strjoin(put, parsing.aff, 0);
 		}
 		if (!parsing.aff) 
 		{
