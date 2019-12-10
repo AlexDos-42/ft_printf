@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:12:21 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/03 19:19:16 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/10 16:27:00 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ char	*ft_strdup(const char *src)
 
 	i = 0;
 	if (!src)
-		return (NULL);
+	{
+		dest = ft_strdup("(null)");
+		return (dest);
+	}
 	if (!(dest = (char *)malloc((ft_strlen(src) + 1) * sizeof(char))))
 		return (NULL);
 	while (src && *src)
