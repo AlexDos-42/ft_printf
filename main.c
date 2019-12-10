@@ -6,10 +6,12 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	ft_printf("debut __%s__ fin\n____\n", "");
-	printf("debut __%s__ fin\n____\n", "");
-	ft_printf("debut %c fin\n____\n", '\0');
-	printf("debut %c fin\n____\n", '\0');
+	ft_printf("debut ____ fin\n____\n", NULL);
+	printf("debut __%5.p__ fin\n____\n", NULL);
+	ft_printf("debut %.p fin\n____\n", NULL);
+	printf("debut %.p fin\n____\n", NULL);
+	ft_printf("debut %.0p fin\n____\n", 0);
+	printf("debut %.0p fin\n____\n", 0);
 	return (0);
 }
 */

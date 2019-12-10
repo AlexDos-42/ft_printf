@@ -45,12 +45,6 @@ char	*ft_itoa_base(unsigned long long int nbr, char *base)
 	i = 0;
 	basesize = ft_strlen(base);
 	n = nbr;
-	if (nbr == 0)
-	{
-		if (!(str = (char *)ft_calloc(sizeof(char), 1)))
-			return (NULL); 
-		return(str);
-	}
 	while ((n /= basesize) >= 1)
 		i++;
 	i += 1;

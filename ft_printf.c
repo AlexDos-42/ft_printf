@@ -42,7 +42,7 @@ int		ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	if (arg[i] == 'c' || arg[i] == 'd' || arg[i] == 'i' || arg[i] == '%' || arg[i] == 'x' ||
 			arg[i] == 'X' || arg[i] == 'u' || arg[i] == 'p' ||  arg[i] == 's')
 		return (++i);
-	return (0);
+	return (-1);
 }
 
 char 	*ft_boucle(char *arg, va_list *va)
@@ -50,15 +50,19 @@ char 	*ft_boucle(char *arg, va_list *va)
 	char *tmp;
 	char *put;
 	t_parsing parsing;
+	int i;
 
 	put = ft_calloc(1, 1);
 	while (*arg)
 	{
+		i = 0;
 		ft_init_parsing(&parsing);
 		if (*arg == '%')
 		{
 			arg++;
-			arg += ft_parsing(arg, va, &parsing);
+			if (!(i = ft_parsing(arg, va, &parsing)))
+				return (NULL);
+			arg += i;
 			if (parsing.aff)
 				tmp = ft_strjoin(put, parsing.aff, 0);
 		}
@@ -84,9 +88,13 @@ int	ft_printf(const char *format, ...)
 
 	va_start(va, format);
 	arg = (char *)format;
-	put = ft_boucle(arg, &va);
-	ft_putstr_fd(put, 1);
-	len = ft_strlen(put);
+	if ((put = ft_boucle(arg, &va)) == NULL)
+		len = -1;
+	else
+	{
+		ft_putstr_fd(put, 1);
+		len = ft_strlen(put);
+	}
 	va_end(va);
 	free(put);
 	return (len);

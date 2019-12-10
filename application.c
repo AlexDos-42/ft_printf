@@ -4,7 +4,7 @@ void		ft_s_precisionapp(char arg, t_parsing *parsing)
 {
 	char	*tmp;
 
-	if ((arg == 's') && parsing->precision > 0)
+	if ((arg == 's') && parsing->precision >= 0)
 	{
 		tmp = ft_substr(parsing->aff, 0, parsing->precision);
 		free(parsing->aff);
@@ -56,7 +56,7 @@ void		ft_exception(t_parsing *parsing, char arg)
 {
 	char	*tmp;
 
-	if (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg == 'p' )
+	if (arg == 'd' || arg == 'i' || arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p' || arg == '%')
 	{
 		if (parsing->precision == 0 && parsing->aff[0] == '0')
 		{
@@ -75,25 +75,15 @@ void		ft_app(char arg, t_parsing *parsing)
 
 	ft_exception(parsing, arg);
 	ft_s_precisionapp(arg, parsing);
-	if (parsing->precision >= 0 && (arg =='d' || arg =='i' || arg =='u' || arg =='x' || arg =='X' || arg =='p'))
+	if (parsing->precision >= 0 && (arg == '%' || arg =='d' || arg =='i' || arg =='u'
+				|| arg =='x' || arg =='X' || arg =='p'))
 		ft_precisionappnbr(parsing);
 	if (arg == 'p')
 	{
-		if (!parsing->aff[0])
-		{
-			tmp = ft_strdup("(nil)");
-			free(parsing->aff);
-			parsing->aff = tmp;
-		}
-		else
-		{
-			tmp = ft_strjoin("0x", parsing->aff, 0);
-			free(parsing->aff);
-			parsing->aff = tmp;
-		}
+		tmp = ft_strjoin("0x", parsing->aff, 0);
+		free(parsing->aff);
+		parsing->aff = tmp;
 	}
-	if (arg == 's' && !parsing->aff[0])
-		return ;
-	if (parsing->flagstiret != 0 && arg != '%')
+	if (parsing->flagstiret != 0)
 		ft_flagsapp(parsing);
 }
