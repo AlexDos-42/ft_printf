@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   application.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/11 13:04:40 by alesanto          #+#    #+#             */
+/*   Updated: 2019/12/11 18:11:08 by alesanto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void		ft_s_precisionapp(char arg, t_parsing *parsing)
@@ -11,6 +23,7 @@ void		ft_s_precisionapp(char arg, t_parsing *parsing)
 		parsing->aff = tmp;
 	}
 }
+
 void		ft_precisionappnbr(t_parsing *parsing)
 {
 	char	*tmp;
@@ -32,6 +45,7 @@ void		ft_precisionappnbr(t_parsing *parsing)
 		parsing->aff = tmp;
 	}
 }
+
 void		ft_flagsapp(t_parsing *parsing)
 {
 	char	*tmp;

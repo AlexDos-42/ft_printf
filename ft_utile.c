@@ -1,21 +1,42 @@
-# include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utile.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/11 12:58:26 by alesanto          #+#    #+#             */
+/*   Updated: 2019/12/11 18:04:12 by alesanto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	*ft_cdup(char c)
+#include "ft_printf.h"
+
+char		*ft_cdup(int d)
 {
 	char	*str;
 	int		i;
+	char	c;
 
+	c = (char)d;
 	i = 0;
 	if (!c)
-		return (NULL);
-	if (!(str = malloc(c + 1 * sizeof(char))))
-		return (NULL);
-	str[i++] = (unsigned char)c;
+	{
+		if (!(str = malloc(1 * sizeof(char))))
+			return (NULL);
+	}
+	else
+	{
+		if (!(str = malloc((2) * sizeof(char))))
+			return (NULL);
+	}
+	if (c)
+		str[i++] = c;
 	str[i] = '\0';
 	return (str);
 }
 
-char	*ft_strjoin_c(char const *s1, char c)
+char		*ft_strjoin_c(char const *s1, char c)
 {
 	int		i;
 	char	*str;
@@ -35,12 +56,12 @@ char	*ft_strjoin_c(char const *s1, char c)
 	return (str);
 }
 
-char	*ft_itoa_base(unsigned long long int nbr, char *base)
+char		*ft_itoa_base(unsigned long long int nbr, char *base)
 {
-	char	*str;
-	int	i;
+	char						*str;
+	int							i;
 	unsigned long long int		n;
-	int 	basesize;
+	int							basesize;
 
 	i = 0;
 	basesize = ft_strlen(base);
