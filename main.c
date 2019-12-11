@@ -1,20 +1,24 @@
 #include "ft_printf.h"
 
 
-/*
-int	main(int ac, char **av)
+#include <stdio.h>
+
+
+int main(void)
 {
-	(void)ac;
-	(void)av;
-	ft_printf("debut ____ fin\n____\n", NULL);
-	printf("debut __%5.p__ fin\n____\n", NULL);
-	ft_printf("debut %.p fin\n____\n", NULL);
-	printf("debut %.p fin\n____\n", NULL);
-	ft_printf("debut %.0p fin\n____\n", 0);
-	printf("debut %.0p fin\n____\n", 0);
+	printf("_%c_\n", '\0');
+	ft_printf("_%c_\n", '\0');
+	printf("_%5c_\n", '\0');
+	ft_printf("_%5c_\n", '\0');
+	printf("_%-5c_\n", '\0');
+	ft_printf("_%-5c_\n", '\0');
+	printf("_%c_\n", -0);
+	ft_printf("_%c_\n", -0);
+	printf("_%c_\n", 0);
+	ft_printf("_%c_\n", 0);
 	return (0);
 }
-*/
+/*
 int main(void)
 {
     int test1 = 1000000000;
@@ -171,5 +175,6 @@ int main(void)
     ft_printf("mien printf avec -.2s '%-.2s'\n", "");
     ft_printf("valeur : %d\n", ft_printf("bonjour %12s_\n", ""));
     printf("valeur : %d\n", printf("bonjour %12s_\n", ""));
-    printf("bonjour %12s_\n", "\0");
-}
+    printf("bonjour %c_\n", NULL);
+    printf("bonjour %c_\n")i;
+}*/

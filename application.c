@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:04:40 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/11 18:11:08 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/11 18:18:55 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void		ft_exception(t_parsing *parsing, char arg)
 {
 	char	*tmp;
 
-	if (arg == 'd' || arg == 'i' || arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p' || arg == '%')
+	if (arg == 'd' || arg == 'i' || arg == 'u' || arg == 'x'
+			|| arg == 'X' || arg == 'p' || arg == '%')
 	{
 		if (parsing->precision == 0 && parsing->aff[0] == '0')
 		{
@@ -79,7 +80,8 @@ void		ft_exception(t_parsing *parsing, char arg)
 			parsing->aff = tmp;
 		}
 		if (parsing->precision == -1)
-			parsing->precision = (parsing->aff[0] == '-') ? parsing->flags0 - 1 : parsing->flags0;
+			parsing->precision = (parsing->aff[0] == '-') ?
+				parsing->flags0 - 1 : parsing->flags0;
 	}
 }
 
@@ -89,8 +91,8 @@ void		ft_app(char arg, t_parsing *parsing)
 
 	ft_exception(parsing, arg);
 	ft_s_precisionapp(arg, parsing);
-	if (parsing->precision >= 0 && (arg == '%' || arg =='d' || arg =='i' || arg =='u'
-				|| arg =='x' || arg =='X' || arg =='p'))
+	if (parsing->precision >= 0 && (arg == '%' || arg == 'd' || arg == 'i'
+			|| arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p'))
 		ft_precisionappnbr(parsing);
 	if (arg == 'p')
 	{
