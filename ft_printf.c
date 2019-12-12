@@ -52,12 +52,15 @@ int				ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	i += ft_width(&arg[i], va, parsing);
 	i += ft_precision(&arg[i], va, parsing);
 	ft_type(arg[i], va, parsing);
-	ft_app(arg[i], parsing);
 	if (arg[i] == 'c' || arg[i] == 'd' || arg[i] == 'i' || arg[i] == '%' ||
 			arg[i] == 'x' || arg[i] == 'X' || arg[i] == 'u'
 			|| arg[i] == 'p' || arg[i] == 's')
+	{
+		ft_app(arg[i], parsing);
 		return (++i);
-	return (-1);
+	}
+	return (i);
+}
 }
 
 char			*ft_boucle(char *arg, va_list *va)
@@ -75,16 +78,16 @@ char			*ft_boucle(char *arg, va_list *va)
 			arg++;
 			arg += ft_parsing(arg, va, &parsing);
 			if (parsing.aff)
-				tmp = ft_strjoin(put, parsing.aff, 0);
+				put = ft_strjoin(put, parsing.aff, 1);
 		}
 		if (!parsing.aff)
 		{
 			tmp = ft_strjoin_c(put, *arg);
+			free(put);
+			put = tmp;
 			arg++;
 		}
 		free(parsing.aff);
-		free(put);
-		put = tmp;
 	}
 	return (put);
 }
