@@ -6,16 +6,26 @@
 
 int main(void)
 {
+//	printf("_%.*i_\n", -2, -8);
+//	ft_printf("_%.*i_\n", -2, -8);
+//	printf("_%0*.*i_\n", 2, -2, 8);
+//	ft_printf("_%0*.*i_\n", 2, -2, 8);
+//	printf("_%-5u_\n", 8);
+//	ft_printf("_%-5u_\n", 8);
+//	printf("_%u_\n", 0);
+//	ft_printf("_%u_\n", 0);
+//	printf("_%10c_\n", "");
+//	ft_printf("_%10c_\n", "");
 	printf("_%c_\n", '\0');
 	ft_printf("_%c_\n", '\0');
-	printf("_%5c_\n", '\0');
-	ft_printf("_%5c_\n", '\0');
-	printf("_%-5c_\n", '\0');
-	ft_printf("_%-5c_\n", '\0');
-	printf("_%c_\n", -0);
-	ft_printf("_%c_\n", -0);
-	printf("_%c_\n", 0);
-	ft_printf("_%c_\n", 0);
+	printf("_%10c_\n", '\0');
+	ft_printf("_%10c_\n", '\0');
+//	printf("_%0.*i_\n", -9, 8);
+//	ft_printf("_%0.*i_\n", -9, 8);
+//	printf("_%.*i_\n", 9, 8);
+//	ft_printf("_%.*i_\n", 9, 8);
+//	printf("_%.*i_\n", -9, 8);
+//	ft_printf("_%.*i_\n", -9, 8);
 	return (0);
 }
 /*

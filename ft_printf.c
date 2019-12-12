@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:19:00 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/11 18:29:36 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/12 14:17:28 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,15 @@ int				ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	i += ft_flags(&arg[i], parsing);
 	i += ft_width(&arg[i], va, parsing);
 	i += ft_precision(&arg[i], va, parsing);
-	ft_type(arg[i], va, parsing);
 	if (arg[i] == 'c' || arg[i] == 'd' || arg[i] == 'i' || arg[i] == '%' ||
 			arg[i] == 'x' || arg[i] == 'X' || arg[i] == 'u'
 			|| arg[i] == 'p' || arg[i] == 's')
 	{
+		ft_type(arg[i], va, parsing);
 		ft_app(arg[i], parsing);
 		return (++i);
 	}
-	return (i);
-}
+	return (0);
 }
 
 char			*ft_boucle(char *arg, va_list *va)
@@ -80,7 +79,7 @@ char			*ft_boucle(char *arg, va_list *va)
 			if (parsing.aff)
 				put = ft_strjoin(put, parsing.aff, 1);
 		}
-		if (!parsing.aff)
+		if (!parsing.aff && *arg)
 		{
 			tmp = ft_strjoin_c(put, *arg);
 			free(put);

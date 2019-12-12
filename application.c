@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:04:40 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/11 18:18:55 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/12 18:42:56 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		ft_precisionappnbr(t_parsing *parsing)
 	}
 }
 
-void		ft_flagsapp(t_parsing *parsing)
+void		ft_flagsapp(t_parsing *parsing, char arg)
 {
 	char	*tmp;
 	int		i;
@@ -57,6 +57,8 @@ void		ft_flagsapp(t_parsing *parsing)
 	if (parsing->flags0 > j)
 		j = parsing->flags0;
 	tmp = ft_calloc(sizeof(char), (j + 1));
+	if (!ft_strlen(parsing->aff) && arg == 'c')
+			j--;
 	while (j-- > ((parsing->aff != NULL ? ft_strlen(parsing->aff) : 0)))
 		tmp[i++] = ' ';
 	tmp[i] = '\0';
@@ -87,19 +89,22 @@ void		ft_exception(t_parsing *parsing, char arg)
 
 void		ft_app(char arg, t_parsing *parsing)
 {
-	char	*tmp;
+	int i;
 
+	i = 0;
+	if (arg == 'c' && !ft_strlen(parsing->aff))  
+		i = 1;
 	ft_exception(parsing, arg);
 	ft_s_precisionapp(arg, parsing);
 	if (parsing->precision >= 0 && (arg == '%' || arg == 'd' || arg == 'i'
 			|| arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p'))
 		ft_precisionappnbr(parsing);
 	if (arg == 'p')
-	{
-		tmp = ft_strjoin("0x", parsing->aff, 0);
-		free(parsing->aff);
-		parsing->aff = tmp;
-	}
+		parsing->aff = ft_strjoin("0x", parsing->aff, 2);
 	if (parsing->flagstiret != 0)
-		ft_flagsapp(parsing);
+		ft_flagsapp(parsing, arg);
+	if (arg == 'c' && i == 1 && parsing->flagstiret < 0)
+		parsing->aff = ft_strjoin("\324", parsing->aff, 2);
+	else if (arg == 'c' && i == 1)
+		parsing->aff = ft_strjoin(parsing->aff, "\324", 1);
 }
