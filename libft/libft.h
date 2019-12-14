@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:51:23 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/12 18:30:05 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/11/10 11:15:46 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char					*ft_substr(char const *s,
 void					*ft_memccpy(void *dest, const void *src,
 							int c, size_t n);
 void					ft_putchar_fd(char c, int fd);
-void					ft_putstr_fd(char *str, int fd);
+int						ft_putstr_fd(char *str, int fd);
 void					ft_putendl_fd(char *str, int fd);
 void					ft_putnbr_fd(int n, int fd);
 char					*ft_strrchr(const char *s, int c);
