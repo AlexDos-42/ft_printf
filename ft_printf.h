@@ -24,10 +24,11 @@ typedef struct		s_parsing
 	int				precision;
 	char			*aff;
 	int				flags0;
+	int				c;
 }					t_parsing;
 
 int					ft_printf(const char *format, ...);
-char				*ft_boucle(char *arg, va_list *va);
+int					ft_boucle(char *arg, va_list *va);
 int					ft_parsing(char *arg, va_list *va, t_parsing *parsing);
 void				ft_init_parsing(t_parsing *parsing);
 void				ft_init_parsing(t_parsing *parsing);
