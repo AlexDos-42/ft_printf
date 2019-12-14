@@ -40,7 +40,6 @@ void			ft_init_parsing(t_parsing *parsing)
 	parsing->flagstiret = 0;
 	parsing->flags0 = 0;
 	parsing->precision = -1;
-	parsing->c = 0;
 	parsing->aff = NULL;
 }
 
@@ -63,12 +62,13 @@ int				ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	return (0);
 }
 
-int			ft_boucle(char *arg, va_list *va)
+char			*ft_boucle(char *arg, va_list *va)
 {
+	char		*tmp;
+	char		*put;
 	t_parsing	parsing;
-	int len;
 
-	len = 0;
+	put = ft_calloc(1, 1);
 	while (*arg)
 	{
 		ft_init_parsing(&parsing);
@@ -76,18 +76,19 @@ int			ft_boucle(char *arg, va_list *va)
 		{
 			arg++;
 			arg += ft_parsing(arg, va, &parsing);
-			if (parsing.aff || parsing.c != 0)
-				len = len + ft_putstr_fd(parsing.aff, parsing.c);
+			if (parsing.aff)
+				put = ft_strjoin(put, parsing.aff, 1);
 		}
 		if (!parsing.aff && *arg)
 		{
-			ft_putchar_fd(*arg, 1);
-			len++;
+			tmp = ft_strjoin_c(put, *arg);
+			free(put);
+			put = tmp;
 			arg++;
 		}
 		free(parsing.aff);
 	}
-	return (len);
+	return (put);
 }
 
 int				ft_printf(const char *format, ...)
@@ -95,10 +96,18 @@ int				ft_printf(const char *format, ...)
 	char		*arg;
 	va_list		va;
 	int			len;
+	char		*put;
 
 	va_start(va, format);
 	arg = (char *)format;
-	len = ft_boucle(arg, &va);
+	if ((put = ft_boucle(arg, &va)) == NULL)
+		len = -1;
+	else
+	{
+		ft_putstr_fd(put, 1);
+		len = ft_strlen(put);
+	}
 	va_end(va);
+	free(put);
 	return (len);
 }

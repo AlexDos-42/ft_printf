@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:00:03 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/12 15:39:37 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/14 16:43:57 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ int			ft_flags(char *arg, t_parsing *parsing)
 			if (arg[i] == '-')
 				parsing->flagstiret = -1;
 			if (arg[i] == '0' && parsing->flagstiret != -1)
+			{
 				parsing->flags0 = 1;
+				parsing->z = 1;
+			}
 			if (parsing->flagstiret == -1)
+			{
 				parsing->flags0 = 0;
+				parsing->z = 0;
+			}
 			i++;
 		}
 	}

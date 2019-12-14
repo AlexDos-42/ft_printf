@@ -104,7 +104,7 @@ void		ft_app(char arg, t_parsing *parsing)
 	if (parsing->flagstiret != 0)
 		ft_flagsapp(parsing, arg);
 	if (arg == 'c' && i == 1 && parsing->flagstiret < 0)
-		parsing->c = -1;
+		parsing->aff = ft_strjoin("\324", parsing->aff, 2);
 	else if (arg == 'c' && i == 1)
-		parsing->c = 1;
+		parsing->aff = ft_strjoin(parsing->aff, "\324", 1);
 }

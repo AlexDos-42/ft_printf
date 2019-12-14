@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-/*
+
 int main(void)
 {
 //	printf("_%.*i_\n", -2, -8);
@@ -27,8 +27,8 @@ int main(void)
 //	printf("_%.*i_\n", -9, 8);
 //	ft_printf("_%.*i_\n", -9, 8);
 	return (0);
-}*/
-
+}
+/*
 int main(void)
 {
     int test1 = 1000000000;
@@ -44,7 +44,7 @@ int main(void)
     char *test11 = NULL;
     char *test12 = 0x0;
    // char *str = NULL;
-/*   printf("VRAI PRINTF:\n");
+    printf("VRAI PRINTF:\n");
     printf("-----Test normaux-----\n");
     printf("test printf\n");
     ft_printf("test printf\n");
@@ -178,13 +178,13 @@ int main(void)
     ft_printf("zero negatif '%10.6d'\n", -1000);
     printf("zero + prec '%-010d'\n", -1000);
     ft_printf("zero + prec '%-010d'\n", -1000);
-    printf("----------------------------------\n");*/
-  printf("VALEURS DE RETOUR de \\0 = %d\n", printf("%c", '\0'));
-    ft_printf("VALEURS DE RETOUR de \\0 = %d\n", ft_printf("%c", '\0'));
+    printf("----------------------------------\n");
+//  printf("VALEURS DE RETOUR de \\0 = %d\n", printf("%c", '\0'));
+//    ft_printf("VALEURS DE RETOUR de \\0 = %d\n", ft_printf("%c", '\0'));
     printf("vrai printf avec -.2s '%-.2s'\n", "");
     ft_printf("mien printf avec -.2s '%-.2s'\n", "");
-    ft_printf("valeur : %d\n", ft_printf("bonjour %12s_\n", "salut!"));
-    printf("valeur : %d\n", printf("bonjour %12s_\n", "salut!"));
-    printf("bonjour _%10c_\n", '\0');
-    ft_printf("bonjour _%10c_\n", '\0');
-}
+    ft_printf("valeur : %d\n", ft_printf("bonjour %12s_\n", ""));
+    printf("valeur : %d\n", printf("bonjour %12s_\n", ""));
+    printf("bonjour %c_\n", NULL);
+    printf("bonjour %c_\n")i;
+}*/
