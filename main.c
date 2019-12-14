@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 
-
 int main(void)
 {
 //	printf("_%.*i_\n", -2, -8);
@@ -26,11 +25,7 @@ int main(void)
 //	ft_printf("_%.*i_\n", 9, 8);
 //	printf("_%.*i_\n", -9, 8);
 //	ft_printf("_%.*i_\n", -9, 8);
-	return (0);
-}
-/*
-int main(void)
-{
+
     int test1 = 1000000000;
 //    short int test2 = 10000;
 //    char test3 = 42;
@@ -44,7 +39,7 @@ int main(void)
     char *test11 = NULL;
     char *test12 = 0x0;
    // char *str = NULL;
-    printf("VRAI PRINTF:\n");
+   printf("VRAI PRINTF:\n");
     printf("-----Test normaux-----\n");
     printf("test printf\n");
     ft_printf("test printf\n");
@@ -179,12 +174,18 @@ int main(void)
     printf("zero + prec '%-010d'\n", -1000);
     ft_printf("zero + prec '%-010d'\n", -1000);
     printf("----------------------------------\n");
-//  printf("VALEURS DE RETOUR de \\0 = %d\n", printf("%c", '\0'));
-//    ft_printf("VALEURS DE RETOUR de \\0 = %d\n", ft_printf("%c", '\0'));
-    printf("vrai printf avec -.2s '%-.2s'\n", "");
-    ft_printf("mien printf avec -.2s '%-.2s'\n", "");
-    ft_printf("valeur : %d\n", ft_printf("bonjour %12s_\n", ""));
-    printf("valeur : %d\n", printf("bonjour %12s_\n", ""));
-    printf("bonjour %c_\n", NULL);
-    printf("bonjour %c_\n")i;
-}*/
+  printf("VALEURS DE RETOUR de \\0 = %d\n", printf("%c", '\0'));
+   ft_printf("VALEURS DE RETOUR de \\0 = %d\n", ft_printf("%c", '\0'));
+    ft_printf("valeur : %d\n", ft_printf("bonjour %12s_\n", "salut!"));
+    printf("valeur : %d\n", printf("bonjour %12s_\n", "salut!"));
+    printf("bonjour _%09s_\n", "Hi low");
+    ft_printf("bonjour _%09s_\n", "Hi low");
+    printf("Pourcent pourcent : '%.10%'\n");
+    ft_printf("Pourcent pourcent : '%.10%'\n");
+    printf("Pourcent pourcent : '%0.10%'\n");
+    ft_printf("Pourcent pourcent : '%0.10%'\n");
+    printf("Pourcent pourcent : '%010%'\n");
+    ft_printf("Pourcent pourcent : '%010%'\n");
+    printf("Pourcent pourcent : '%10.10%'\n");
+    ft_printf("Pourcent pourcent : '%10.10%'\n");
+}

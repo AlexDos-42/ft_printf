@@ -6,13 +6,13 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:19:00 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/12 14:17:28 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/14 18:37:51 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_type(char type, va_list *va, t_parsing *parsing)
+void		ft_type(char type, va_list *va, t_parsing *parsing)
 {
 	if (type == 'c')
 		parsing->aff = ft_cdup(va_arg(*va, int));
@@ -35,20 +35,25 @@ void			ft_type(char type, va_list *va, t_parsing *parsing)
 					unsigned long long int), "0123456789abcdef");
 }
 
-void			ft_init_parsing(t_parsing *parsing)
+void		ft_init_parsing(t_parsing *parsing)
 {
 	parsing->flagstiret = 0;
 	parsing->flags0 = 0;
 	parsing->precision = -1;
+	parsing->c = 0;
 	parsing->aff = NULL;
+	parsing->w = 0;
+	parsing->z = 0;
 }
 
-int				ft_parsing(char *arg, va_list *va, t_parsing *parsing)
+int			ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 {
 	int i;
 
 	i = 0;
 	i += ft_flags(&arg[i], parsing);
+	if (*arg && !(ft_isdigit(arg[i])) && arg[i] != '*')
+		parsing->w = 1;
 	i += ft_width(&arg[i], va, parsing);
 	i += ft_precision(&arg[i], va, parsing);
 	if (arg[i] == 'c' || arg[i] == 'd' || arg[i] == 'i' || arg[i] == '%' ||
@@ -62,13 +67,12 @@ int				ft_parsing(char *arg, va_list *va, t_parsing *parsing)
 	return (0);
 }
 
-char			*ft_boucle(char *arg, va_list *va)
+int			ft_boucle(char *arg, va_list *va)
 {
-	char		*tmp;
-	char		*put;
 	t_parsing	parsing;
+	int			len;
 
-	put = ft_calloc(1, 1);
+	len = 0;
 	while (*arg)
 	{
 		ft_init_parsing(&parsing);
@@ -76,38 +80,29 @@ char			*ft_boucle(char *arg, va_list *va)
 		{
 			arg++;
 			arg += ft_parsing(arg, va, &parsing);
-			if (parsing.aff)
-				put = ft_strjoin(put, parsing.aff, 1);
+			if (parsing.aff || parsing.c)
+				len = len + ft_putstr_fd(parsing.aff, parsing.c);
 		}
 		if (!parsing.aff && *arg)
 		{
-			tmp = ft_strjoin_c(put, *arg);
-			free(put);
-			put = tmp;
+			ft_putchar_fd(*arg, 1);
+			len++;
 			arg++;
 		}
 		free(parsing.aff);
 	}
-	return (put);
+	return (len);
 }
 
-int				ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	char		*arg;
 	va_list		va;
 	int			len;
-	char		*put;
 
 	va_start(va, format);
 	arg = (char *)format;
-	if ((put = ft_boucle(arg, &va)) == NULL)
-		len = -1;
-	else
-	{
-		ft_putstr_fd(put, 1);
-		len = ft_strlen(put);
-	}
+	len = ft_boucle(arg, &va);
 	va_end(va);
-	free(put);
 	return (len);
 }

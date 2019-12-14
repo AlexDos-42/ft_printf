@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:04:40 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/12 18:42:56 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/14 18:34:57 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,20 @@ void		ft_flagsapp(t_parsing *parsing, char arg)
 	int		j;
 
 	i = 0;
+	j = 0;
 	j = (parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret;
 	if (parsing->flags0 > j)
 		j = parsing->flags0;
 	tmp = ft_calloc(sizeof(char), (j + 1));
 	if (!ft_strlen(parsing->aff) && arg == 'c')
-			j--;
-	while (j-- > ((parsing->aff != NULL ? ft_strlen(parsing->aff) : 0)))
-		tmp[i++] = ' ';
+		j--;
+	while (j-- > ((!ft_strlen(parsing->aff) ? 0 : ft_strlen(parsing->aff))))
+	{
+		if (parsing->z == 1 && arg == '%')
+			tmp[i++] = '0';
+		else
+			tmp[i++] = ' ';
+	}
 	tmp[i] = '\0';
 	if (parsing->flagstiret > 0)
 		parsing->aff = ft_strjoin(tmp, parsing->aff, 3);
@@ -92,19 +98,19 @@ void		ft_app(char arg, t_parsing *parsing)
 	int i;
 
 	i = 0;
-	if (arg == 'c' && !ft_strlen(parsing->aff))  
+	if (arg == 'c' && !ft_strlen(parsing->aff))
 		i = 1;
 	ft_exception(parsing, arg);
 	ft_s_precisionapp(arg, parsing);
-	if (parsing->precision >= 0 && (arg == '%' || arg == 'd' || arg == 'i'
+	if (parsing->precision >= 0 && (arg == 'd' || arg == 'i'
 			|| arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p'))
 		ft_precisionappnbr(parsing);
 	if (arg == 'p')
 		parsing->aff = ft_strjoin("0x", parsing->aff, 2);
-	if (parsing->flagstiret != 0)
+	if (parsing->flagstiret != 0 && parsing->w != 1)
 		ft_flagsapp(parsing, arg);
 	if (arg == 'c' && i == 1 && parsing->flagstiret < 0)
-		parsing->aff = ft_strjoin("\324", parsing->aff, 2);
+		parsing->c = -1;
 	else if (arg == 'c' && i == 1)
-		parsing->aff = ft_strjoin(parsing->aff, "\324", 1);
+		parsing->c = 1;
 }

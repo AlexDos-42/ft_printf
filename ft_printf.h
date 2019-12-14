@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:35:15 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/12 17:30:46 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/14 16:46:54 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ typedef struct		s_parsing
 	int				precision;
 	char			*aff;
 	int				flags0;
+	int				c;
+	int				w;
+	int				z;
 }					t_parsing;
 
 int					ft_printf(const char *format, ...);
-char				*ft_boucle(char *arg, va_list *va);
+int					ft_boucle(char *arg, va_list *va);
 int					ft_parsing(char *arg, va_list *va, t_parsing *parsing);
 void				ft_init_parsing(t_parsing *parsing);
 void				ft_init_parsing(t_parsing *parsing);

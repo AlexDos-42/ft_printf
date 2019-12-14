@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:00:03 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/14 16:43:57 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/14 18:38:56 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int			ft_width(char *arg, va_list *va, t_parsing *parsing)
 	i = 0;
 	if (*arg && ft_isdigit(arg[i]))
 	{
-		if (parsing->flagstiret == 0)
-			parsing->flagstiret = 1;
+		parsing->flagstiret == 0 ?
+			parsing->flagstiret = 1 : parsing->flagstiret;
 		parsing->flagstiret *= ft_atoi(arg);
 		parsing->flags0 *= parsing->flagstiret;
 		while (ft_isdigit(arg[i]))
@@ -57,8 +57,8 @@ int			ft_width(char *arg, va_list *va, t_parsing *parsing)
 	}
 	else if (*arg && arg[i] == '*')
 	{
-		if (parsing->flagstiret == 0)
-			parsing->flagstiret = 1;
+		parsing->flagstiret == 0 ?
+			parsing->flagstiret = 1 : parsing->flagstiret;
 		j = parsing->flagstiret > 0 ? 1 : -1;
 		parsing->flagstiret *= va_arg(*va, unsigned int);
 		if (j == -1 && parsing->flagstiret > 0)
