@@ -6,29 +6,25 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:11:46 by alesanto          #+#    #+#             */
-/*   Updated: 2019/11/06 10:59:38 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/12 18:43:02 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *str, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
 	int i;
 
-	if (!str || !*str)
-		return (0);
+	if (!str || !*str || fd < 0)
+		return ;
 	i = 0;
-	if (fd == -1)
-		write(1, '\0', 1);
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		if (str[i] == '\324')
+			write(fd, "\0", 1);
+		else
+			write(fd, &str[i], 1);
 		i++;
 	}
-	if (fd == 1)
-			write(1, '\0', 1);
-	if (fd == 1 || fd == -1)
-		i++;
-	return (i);
 }
