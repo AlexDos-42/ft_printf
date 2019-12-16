@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:19:00 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/16 13:25:51 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:37:28 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		ft_init_parsing(t_parsing *parsing)
 	parsing->aff = NULL;
 	parsing->w = 0;
 	parsing->z = 0;
+	parsing->neg = 0;
 }
 
 int			ft_parsing(char *arg, va_list *va, t_parsing *parsing)

@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:04:40 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/16 13:25:02 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:55:16 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,17 @@ void		ft_precisionappnbr(t_parsing *parsing)
 	int		j;
 
 	i = 0;
-	j = (parsing->aff[0] == '-') ? 1 : 0;
+	j = parsing->neg;
 	if (parsing->precision > (ft_strlen(parsing->aff) - j))
 	{
 		tmp = ft_calloc(sizeof(char*), (parsing->precision + j + 1));
 		if (j == 1)
 			tmp[i++] = '-';
 		while (parsing->precision-- > (ft_strlen(parsing->aff)) - j)
+		{
 			tmp[i++] = '0';
+			parsing->z = 0;
+		}
 		tmp[i] = '\0';
 		tmp = ft_strjoin(tmp, &(parsing->aff[j]), 1);
 		free(parsing->aff);
@@ -62,7 +65,8 @@ void		ft_flagsapp(t_parsing *parsing, char arg)
 		j--;
 	while (j-- > ((!ft_strlen(parsing->aff) ? 0 : ft_strlen(parsing->aff))))
 	{
-		if (parsing->z == 1 && (arg == '%' || arg == 'c' || arg == 's'))
+		if ((parsing->z != 0 && (arg == '%' || arg == 's')) || (parsing->z == 1 && (arg == 'c' || arg == 'd' ||
+						arg == 'i' || arg == 'u' || arg == 'x' || arg == 'X')))
 			tmp[i++] = '0';
 		else
 			tmp[i++] = ' ';
@@ -102,9 +106,13 @@ void		ft_app(char arg, t_parsing *parsing)
 		i = 1;
 	ft_exception(parsing, arg);
 	ft_s_precisionapp(arg, parsing);
-	if (parsing->precision >= 0 && (arg == 'd' || arg == 'i'
-			|| arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p'))
+	if (arg == 'd' || arg == 'i'
+			|| arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p')
+	{
+		if (parsing->aff[0] == '-')
+			parsing->neg = 1;
 		ft_precisionappnbr(parsing);
+	}
 	if (arg == 'p')
 		parsing->aff = ft_strjoin("0x", parsing->aff, 2);
 	if (parsing->flagstiret != 0 && parsing->w != 1)

@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:35:15 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/16 13:33:07 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:37:47 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_parsing
 	int				c;
 	int				w;
 	int				z;
+	int				neg;
 }					t_parsing;
 
 int					ft_printf(const char *format, ...);
