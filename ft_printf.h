@@ -47,7 +47,6 @@ void				ft_app(char arg, t_parsing *parsing);
 void				ft_exception(t_parsing *parsing, char arg);
 
 char				*ft_itoa_base(unsigned long long int nbr, char *base);
-char				*ft_strjoin_c(char const *s1, char c);
 char				*ft_cdup(int c);
 
 #endif
