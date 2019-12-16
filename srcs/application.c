@@ -64,13 +64,30 @@ void		ft_flagsapp(t_parsing *parsing, char arg)
 	if (!ft_strlen(parsing->aff) && arg == 'c')
 		j--;
 	while (j-- > ((!ft_strlen(parsing->aff) ? 0 : ft_strlen(parsing->aff))))
-	{
-		if ((parsing->z != 0 && (arg == '%' || arg == 's')) || (parsing->z == 1 && (arg == 'c' || arg == 'd' ||
-						arg == 'i' || arg == 'u' || arg == 'x' || arg == 'X')))
-			tmp[i++] = '0';
-		else
 			tmp[i++] = ' ';
-	}
+	tmp[i] = '\0';
+	if (parsing->flagstiret > 0)
+		parsing->aff = ft_strjoin(tmp, parsing->aff, 3);
+	else
+		parsing->aff = ft_strjoin(parsing->aff, tmp, 3);
+}
+
+void		ft_flagsapp0(t_parsing *parsing, char arg)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	j = (parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret;
+	if (parsing->flags0 > j)
+		j = parsing->flags0;
+	tmp = ft_calloc(sizeof(char), (j + 1));
+	if (!ft_strlen(parsing->aff) && arg == 'c')
+		j--;
+	while (j-- > ((!ft_strlen(parsing->aff) ? 0 : ft_strlen(parsing->aff))))
+			tmp[i++] = '0';
 	tmp[i] = '\0';
 	if (parsing->flagstiret > 0)
 		parsing->aff = ft_strjoin(tmp, parsing->aff, 3);
@@ -115,7 +132,10 @@ void		ft_app(char arg, t_parsing *parsing)
 	}
 	if (arg == 'p')
 		parsing->aff = ft_strjoin("0x", parsing->aff, 2);
-	if (parsing->flagstiret != 0 && parsing->w != 1)
+	if ((parsing->z != 0 && (arg == '%' || arg == 's')) || (parsing->z == 1 && (arg == 'c' || arg == 'd' ||
+						arg == 'i' || arg == 'u' || arg == 'x' || arg == 'X')))
+		ft_flagsapp0(parsing, arg);
+	else if (parsing->flagstiret != 0 && parsing->w != 1)
 		ft_flagsapp(parsing, arg);
 	if (arg == 'c' && i == 1 && parsing->flagstiret < 0)
 		parsing->c = -1;
