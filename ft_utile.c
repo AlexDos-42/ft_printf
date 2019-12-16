@@ -36,26 +36,6 @@ char		*ft_cdup(int d)
 	return (str);
 }
 
-char		*ft_strjoin_c(char const *s1, char c)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!c)
-		return (NULL);
-	if (!(str = malloc(sizeof(char) * (ft_strlen(s1) + 2))))
-		return (NULL);
-	while (s1 && *s1)
-	{
-		str[i] = *s1++;
-		i++;
-	}
-	str[i++] = c;
-	str[i] = '\0';
-	return (str);
-}
-
 char		*ft_itoa_base(unsigned long long int nbr, char *base)
 {
 	char						*str;
