@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:00:03 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/16 19:49:48 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:41:36 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ int			ft_flags(char *arg, t_parsing *parsing)
 	return (i);
 }
 
+int			ft_width2(char *arg, t_parsing *parsing, int i)
+{
+	parsing->flagstiret == 0 ?
+		parsing->flagstiret = 1 : parsing->flagstiret;
+	parsing->flagstiret *= ft_atoi(arg);
+	parsing->flags0 *= parsing->flagstiret;
+	parsing->z *= 2;
+	while (ft_isdigit(arg[i]))
+		i++;
+	return (i);
+}
+
 int			ft_width(char *arg, va_list *va, t_parsing *parsing)
 {
 	int i;
@@ -47,32 +59,22 @@ int			ft_width(char *arg, va_list *va, t_parsing *parsing)
 
 	i = 0;
 	if (*arg && ft_isdigit(arg[i]))
-	{
-		parsing->flagstiret == 0 ?
-			parsing->flagstiret = 1 : parsing->flagstiret;
-		parsing->flagstiret *= ft_atoi(arg);
-		parsing->flags0 *= parsing->flagstiret;
-		
-		parsing->z *= 2;
-		while (ft_isdigit(arg[i]))
-			i++;
-	}
+		i = ft_width2(arg, parsing, i);
 	else if (*arg && arg[i] == '*')
 	{
 		parsing->flagstiret == 0 ?
 			parsing->flagstiret = 1 : parsing->flagstiret;
 		j = va_arg(*va, unsigned int);
 		if (j < 0)
-		{	
+		{
 			parsing->z *= 2;
 			parsing->flagstiret *= parsing->flagstiret < 0 ? -j : j;
 		}
 		else
 			parsing->flagstiret *= j;
 		parsing->flags0 *= parsing->flagstiret;
-		i++;
 	}
-	return (i);
+	return (arg[i] == '*' ? i + 1 : i);
 }
 
 int			ft_precision(char *arg, va_list *va, t_parsing *parsing)
@@ -84,6 +86,7 @@ int			ft_precision(char *arg, va_list *va, t_parsing *parsing)
 	{
 		arg++;
 		parsing->precision = 0;
+		parsing->z *= 2;
 		if (*arg && ft_isdigit(arg[i]))
 		{
 			parsing->precision = ft_atoi(arg);
@@ -93,6 +96,8 @@ int			ft_precision(char *arg, va_list *va, t_parsing *parsing)
 		else if (*arg && arg[i] == '*')
 		{
 			parsing->precision = va_arg(*va, unsigned int);
+			if (parsing->precision < 0)
+				parsing->precision = -1;
 			i++;
 		}
 		i++;

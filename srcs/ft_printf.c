@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:19:00 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/16 20:37:28 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:40:51 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void		ft_type(char type, va_list *va, t_parsing *parsing)
 	else if (type == 'd' || type == 'i')
 		parsing->aff = ft_itoa(va_arg(*va, int));
 	else if (type == 'u')
-		parsing->aff = ft_itoa_base(va_arg(*va, unsigned long), "0123456789");
+		parsing->aff = ft_itoa_base(va_arg(*va, unsigned), "0123456789");
 	else if (type == 'x')
 		parsing->aff =
-			ft_itoa_base(va_arg(*va, unsigned long), "0123456789abcdef");
+			ft_itoa_base(va_arg(*va, unsigned), "0123456789abcdef");
 	else if (type == 'X')
 		parsing->aff =
-			ft_itoa_base(va_arg(*va, unsigned long), "0123456789ABCDEF");
+			ft_itoa_base(va_arg(*va, unsigned), "0123456789ABCDEF");
 	else if (type == 'p')
-		parsing->aff = ft_itoa_base(va_arg(*va,
+		parsing->aff = ft_ptoa_base(va_arg(*va,
 					unsigned long long int), "0123456789abcdef");
 }
 

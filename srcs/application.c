@@ -6,7 +6,7 @@
 /*   By: alesanto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:04:40 by alesanto          #+#    #+#             */
-/*   Updated: 2019/12/16 20:55:16 by alesanto         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:19:17 by alesanto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,37 +64,10 @@ void		ft_flagsapp(t_parsing *parsing, char arg)
 	if (!ft_strlen(parsing->aff) && arg == 'c')
 		j--;
 	while (j-- > ((!ft_strlen(parsing->aff) ? 0 : ft_strlen(parsing->aff))))
-			tmp[i++] = ' ';
+		tmp[i++] = ' ';
 	tmp[i] = '\0';
 	if (parsing->flagstiret > 0)
 		parsing->aff = ft_strjoin(tmp, parsing->aff, 3);
-	else
-		parsing->aff = ft_strjoin(parsing->aff, tmp, 3);
-}
-
-void		ft_flagsapp0(t_parsing *parsing, char arg)
-{
-	char	*tmp;
-	int		i;
-	int		j;
-	int		k;
-	
-	i = 0;
-	j = 0;
-	parsing->flagstiret > 0 ? k = parsing->neg : k = 0;
-	j = (parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret;
-	if (parsing->flags0 > j)
-		j = parsing->flags0;
-	tmp = ft_calloc(sizeof(char), (j + 1 + k));
-	if (!ft_strlen(parsing->aff) && arg == 'c')
-		j--;
-	if (k == 1)
-			tmp[i++] = '-';
-	while (j-- > ((!ft_strlen(parsing->aff) ? 0 : ft_strlen(parsing->aff))))
-			tmp[i++] = '0';
-	tmp[i] = '\0';
-	if (parsing->flagstiret > 0)
-		parsing->aff = ft_strjoin(tmp, (&parsing->aff[k]), 3);
 	else
 		parsing->aff = ft_strjoin(parsing->aff, tmp, 3);
 }
@@ -130,14 +103,14 @@ void		ft_app(char arg, t_parsing *parsing)
 	if (arg == 'd' || arg == 'i'
 			|| arg == 'u' || arg == 'x' || arg == 'X' || arg == 'p')
 	{
-		if (parsing->aff[0] == '-')
-			parsing->neg = 1;
+		parsing->aff[0] == '-' ? parsing->neg = 1 : 0;
 		ft_precisionappnbr(parsing);
 	}
 	if (arg == 'p')
 		parsing->aff = ft_strjoin("0x", parsing->aff, 2);
-	if ((parsing->z != 0 && (arg == '%' || arg == 's')) || (parsing->z == 1 && (arg == 'c' || arg == 'd' ||
-						arg == 'i' || arg == 'u' || arg == 'x' || arg == 'X')))
+	if (((parsing->z != 0 && (arg == '%' || arg == 's')) || (parsing->z == 1
+			&& (arg == 'c' || arg == 'd' || arg == 'i' || arg == 'u'
+			|| arg == 'x' || arg == 'X'))) && (parsing->flagstiret > 0))
 		ft_flagsapp0(parsing, arg);
 	else if (parsing->flagstiret != 0 && parsing->w != 1)
 		ft_flagsapp(parsing, arg);
