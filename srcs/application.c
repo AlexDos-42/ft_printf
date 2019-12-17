@@ -77,20 +77,24 @@ void		ft_flagsapp0(t_parsing *parsing, char arg)
 	char	*tmp;
 	int		i;
 	int		j;
-
+	int		k;
+	
 	i = 0;
 	j = 0;
+	parsing->flagstiret > 0 ? k = parsing->neg : k = 0;
 	j = (parsing->flagstiret > 0) ? parsing->flagstiret : -parsing->flagstiret;
 	if (parsing->flags0 > j)
 		j = parsing->flags0;
-	tmp = ft_calloc(sizeof(char), (j + 1));
+	tmp = ft_calloc(sizeof(char), (j + 1 + k));
 	if (!ft_strlen(parsing->aff) && arg == 'c')
 		j--;
+	if (k == 1)
+			tmp[i++] = '-';
 	while (j-- > ((!ft_strlen(parsing->aff) ? 0 : ft_strlen(parsing->aff))))
 			tmp[i++] = '0';
 	tmp[i] = '\0';
 	if (parsing->flagstiret > 0)
-		parsing->aff = ft_strjoin(tmp, parsing->aff, 3);
+		parsing->aff = ft_strjoin(tmp, (&parsing->aff[k]), 3);
 	else
 		parsing->aff = ft_strjoin(parsing->aff, tmp, 3);
 }
